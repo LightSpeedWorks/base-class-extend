@@ -1,4 +1,4 @@
-new-base-class
+base-class-extend
 ====
 
 BaseClass is utility for simple class definition.
@@ -9,7 +9,7 @@ no `Object.defineProperty`, no `Object.setPrototypeOf`, etc ...
 # USAGE:
 
 ```js
-var BaseClass = require('new-base-class');
+var BaseClass = require('base-class-extend');
 ```
 
 ## BaseClass.extend([name], proto, [classProps])
@@ -31,7 +31,7 @@ var BaseClass = require('new-base-class');
 # SAMPLE:
 
 ```js
-  var BaseClass = require('new-base-class');
+  var BaseClass = require('base-class-extend');
 
   // SimpleClass
   var SimpleClass = BaseClass.extend();

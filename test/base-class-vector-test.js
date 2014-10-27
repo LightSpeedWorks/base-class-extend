@@ -5,7 +5,7 @@
     var BaseClass = require('../lib/base-class');
   } catch (e) {
     console.log('cant require "../lib/base-class": ' + e);
-    var BaseClass = require('new-base-class');
+    var BaseClass = require('base-class-extend');
   }
 
   // sample: JavaScript Object.defineProperty - SONICMOOV LAB
