@@ -19,6 +19,8 @@
         return Animal.new.apply(Animal, arguments);
       this.name = name;
     },
+    get name() { return this._name; }, // getter
+    set name(name) { this._name = name; }, // setter
     introduce: function () {
       console.log('My name is ' + this.name);
     },

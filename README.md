@@ -44,6 +44,8 @@ var BaseClass = require('new-base-class');
         return Animal.new.apply(Animal, arguments);
       this.name = name;
     },
+    get name() { return this._name; }, // getter
+    set name(name) { this._name = name; }, // setter
     introduce: function () {
       console.log('My name is ' + this.name);
     },
@@ -93,6 +95,56 @@ var BaseClass = require('new-base-class');
   d1.introduce(); // -> My name is Hachi
   Dog.dogClassMethod(); // -> Animal class method, Dog class method
   Dog.animalClassMethod(); // -> Animal class method
+
+
+  // sample: JavaScript Object.defineProperty - SONICMOOV LAB
+  // http://lab.sonicmoov.com/development/javascript-object-defineproperty/
+
+  var Vector2D = BaseClass.extend({
+    new: function Vector2D(x, y) {
+      this._length = 0;
+      this._changed = true;
+      this._x = x;
+      this._y = y;
+    },
+    get x()  { return this._x; },
+    set x(x) { this._x = x; this._changed = true; },
+    get y()  { return this._y; },
+    set y(y) { this._y = y; this._changed = true; },
+    get length() {
+      if (this._changed) {
+        this._length = Math.sqrt(this._x * this._x + this._y * this._y);
+        this._changed = false;
+      }
+      return this._length;
+    },
+    set: function (x, y) { this._x = x; this._y = y; this._changed = true; },
+  });
+
+  var v2 = new Vector2D(3, 4);
+  console.log('V2D(3, 4):', v2.length);
+  v2.set(1, 2);
+  console.log('V2D(1, 2):', v2.length);
+  v2.set(1, 1);
+  console.log('V2D(1, 1):', v2.length);
+
+  var Vector3D = Vector2D.extend({
+    new: function Vector3D(x, y, z) {
+      Vector2D.call(this, x, y);
+      this._z = z;
+    },
+    get length() {
+      if (this._changed) {
+        this._length = Math.sqrt(this._x * this._x + this._y * this._y + this._z * this._z);
+        this._changed = false;
+      }
+      return this._length;
+    },
+    set: function (x, y, z) { this._x = x; this._y = y; this._z = z; this._changed = true; },
+  });
+
+  var v3 = new Vector3D(3, 4, 5);
+  console.log('V3D(3, 4, 5):', v3.length);
 ```
 
 # LICENSE:

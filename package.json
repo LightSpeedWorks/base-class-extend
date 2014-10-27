@@ -1,6 +1,6 @@
 {
   "name": "new-base-class",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "new Base Class for easy class definition - inherits, extend",
   "main": "lib/base-class.js",
   "scripts": {
