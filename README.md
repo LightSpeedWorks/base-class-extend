@@ -1,34 +1,75 @@
 base-class-extend
 ====
 
-BaseClass is utility for simple class definition.
-easy to use, easy to inherits/extend,
+BaseClass define classes in JavaScript.
+This is simple module providing a simple Class function to
+simplify class definition in JavaScript.
+
+Easy to use, easy to inherits/extend.
+
+no difficult keywords,
 no `constructor`, no `prototype`, no `__proto__`,
 no `Object.defineProperty`, no `Object.setPrototypeOf`, etc ...
+
+# INSTALL:
+
+```bash
+  npm install base-class-extend
+```
 
 # USAGE:
 
 ```js
-var BaseClass = require('base-class-extend');
+  var BaseClass = require('base-class-extend');
 ```
 
-## BaseClass.extend([name], proto, [classProps])
+## Prototype
 
-### [name] - SubClass name: string
+```js
+  YourClass = BaseClass.extend([name], prototype, [classProps]);
+```
 
-### proto - instance prototype properties: object
+## Parameters
 
-#### name / constructor - constructor function: function
-#### others - instance method functions: function
++ BaseClass: Base class or Super class for inherits
 
-### [classProps] - class properties: object
++ name: string name of your class, optional
 
-#### init / initialize - class initialize function: function
-#### others - class method functions: function
++ prototype: the prototype object for your class, optional
 
-## BaseClass.new(...)
++ classProps: class or static properties object, optional
 
-# SAMPLE:
+## Returns
+
+The newly defined class (Your class is subclass of BaseClass)
+
+## Details
+
+A simple and quick sample:
+
+```js
+  var BaseClass = require('base-class-extend');
+
+  var MyClass = BaseClass.extend({
+    new: function MyClass(value) {
+      this.value = value; // via setter
+    },
+    show: function show() {
+      console.log(this.value); // via getter
+    },
+    get value() { return this._value; },
+    set value(value) {
+      if (!(value >= 1 && value <= 10))
+        throw new Error('');
+      this._value = value; },
+  });
+
+  var myObj = new MyClass(5);
+  myObj.value++;
+  myObj.show();
+```
+
+# EXAMPLES:
 
 ```js
   var BaseClass = require('base-class-extend');
