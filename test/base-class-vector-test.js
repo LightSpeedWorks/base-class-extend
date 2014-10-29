@@ -8,7 +8,7 @@
     var BaseClass = require('base-class-extend');
   }
 
-  // sample: JavaScript Object.defineProperty - SONICMOOV LAB
+  // sample: getter/setter Object.defineProperty (JavaScript) - SONICMOOV LAB (japanese)
   // http://lab.sonicmoov.com/development/javascript-object-defineproperty/
 
   var Vector2D = BaseClass.extend({

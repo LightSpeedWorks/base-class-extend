@@ -17,8 +17,8 @@
     get name() { return this._name; },
     set name(name) { this._name = name; },
     introduce: function () {
-      console.log('私の名前は' + this.name + 'です。');
-      console.log('私は' + this.constructor.name + 'です。');
+      console.log('私の名前は' + this.name + 'です。' +
+                  '私は' + this.constructor.name + 'です。');
     },
   });
 

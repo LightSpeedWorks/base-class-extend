@@ -20,8 +20,8 @@
     get name() { return this._name; },
     set name(name) { this._name = name; },
     introduce: function () {
-      console.log('My name is ' + this.name + '.');
-      console.log('I am ' + a(this.constructor.name) + '.');
+      console.log('My name is ' + this.name + '. ' +
+                  'I am ' + a(this.constructor.name) + '.');
     },
   });
 
