@@ -23,10 +23,12 @@ no `Object.defineProperty`, no `Object.setPrototypeOf`, etc ...
   var BaseClass = require('base-class-extend');
 ```
 
+# method: BaseClass.extend
+
 ## Prototype
 
 ```js
-  YourClass = BaseClass.extend([name], prototype, [classProps]);
+  var YourClass = BaseClass.extend([name], prototype, [classProps]);
 ```
 
 ## Parameters
@@ -67,6 +69,47 @@ A simple and quick sample:
   var myObj = new MyClass(5);
   myObj.value++;
   myObj.show();
+```
+
+# method: BaseClass.new
+
+## Prototype
+
+```js
+  var YourClass = BaseClass.extend('YourClass');
+  var yourObj = YourClass.new();
+
+  // or
+  var yourObj = new YourClass();
+```
+
+## Returns
+
+Your new object
+
+# without BaseClass, inherits from Object, or other Classes
+
+## inherits from Object
+
+```js
+  Object.extend = BaseClass.extend;
+  Object.new = BaseClass.new;
+  var SimpleClass = Object.extend('SimpleClass', {}, {});
+
+  // or simply
+  var SimpleClass = BaseClass.extend.call(Object, 'SimpleClass', {}, {});
+```
+
+## inherits from EventEmitter
+
+```js
+  var EventEmitter = require('events').EventEmitter;
+  EventEmitter.extend = BaseClass.extend;
+  EventEmitter.new = BaseClass.new;
+  var UsefulClass = EventEmitter.extend('UsefulClass', {}, {});
+
+  // or simply
+  var UsefulClass = BaseClass.extend.call(EventEmitter, 'UsefulClass', {}, {});
 ```
 
 # EXAMPLES:
