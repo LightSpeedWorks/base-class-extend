@@ -93,7 +93,6 @@ Your new object
 
 ```js
   Object.extend = BaseClass.extend;
-  Object.new = BaseClass.new;
   var SimpleClass = Object.extend('SimpleClass');
 
   // or simply
@@ -105,7 +104,6 @@ Your new object
 ```js
   var EventEmitter = require('events').EventEmitter;
   EventEmitter.extend = BaseClass.extend;
-  EventEmitter.new = BaseClass.new;
   var UsefulClass = EventEmitter.extend('UsefulClass');
 
   // or simply

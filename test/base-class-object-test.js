@@ -32,7 +32,6 @@
 
   // Prepare for Object
   Object.extend = BaseClass.extend;
-  Object.new = BaseClass.new;
 
   // SimpleClass2
   var SimpleClass2 = Object.extend('SimpleClass2');
