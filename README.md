@@ -14,7 +14,7 @@ no `Object.defineProperty`, no `Object.setPrototypeOf`, etc ...
 # INSTALL:
 
 ```bash
-  npm install base-class-extend
+  $ npm install base-class-extend
 ```
 
 # USAGE:
@@ -33,13 +33,13 @@ no `Object.defineProperty`, no `Object.setPrototypeOf`, etc ...
 
 ## Parameters
 
-+ BaseClass: Base class or Super class for inherits
++ *BaseClass*: Base class or Super class for inherits
 
-+ name: string name of your class, optional
++ *name*: string name of your class, optional
 
-+ prototype: the prototype object for your class, optional
++ *prototype*: the prototype object for your class, optional
 
-+ classProps: class or static properties object, optional
++ *classProps*: class or static properties object, optional
 
 ## Returns
 
@@ -62,7 +62,7 @@ A simple and quick sample:
     get value() { return this._value; },
     set value(value) {
       if (!(value >= 1 && value <= 10))
-        throw new Error('');
+        throw new Error('Out of range');
       this._value = value; },
   });
 
@@ -94,10 +94,10 @@ Your new object
 ```js
   Object.extend = BaseClass.extend;
   Object.new = BaseClass.new;
-  var SimpleClass = Object.extend('SimpleClass', {}, {});
+  var SimpleClass = Object.extend('SimpleClass');
 
   // or simply
-  var SimpleClass = BaseClass.extend.call(Object, 'SimpleClass', {}, {});
+  var SimpleClass = BaseClass.extend.call(Object, 'SimpleClass');
 ```
 
 ## inherits from EventEmitter
@@ -106,10 +106,10 @@ Your new object
   var EventEmitter = require('events').EventEmitter;
   EventEmitter.extend = BaseClass.extend;
   EventEmitter.new = BaseClass.new;
-  var UsefulClass = EventEmitter.extend('UsefulClass', {}, {});
+  var UsefulClass = EventEmitter.extend('UsefulClass');
 
   // or simply
-  var UsefulClass = BaseClass.extend.call(EventEmitter, 'UsefulClass', {}, {});
+  var UsefulClass = BaseClass.extend.call(EventEmitter, 'UsefulClass');
 ```
 
 # EXAMPLES:
