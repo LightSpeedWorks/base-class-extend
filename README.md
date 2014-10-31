@@ -5,7 +5,11 @@ BaseClass define classes in JavaScript.
 This is simple module providing a simple Class function to
 simplify class definition in JavaScript.
 
-Easy to use, easy to inherits/extend.
+Supports getter/setter.
+
+Easy to use, easy to inherit/extend.
+
+Also supports inheritance from `Array`, `Error`, or Node.js `events.EventEmitter`.
 
 no difficult keywords,
 no `constructor`, no `prototype`, no `__proto__`,
@@ -83,6 +87,10 @@ A simple and quick sample:
   var yourObj = new YourClass();
 ```
 
+## Parameters
+
++ *arguments*...: pass to constructor, optional
+
 ## Returns
 
 Your new object
@@ -110,14 +118,25 @@ Your new object
   var UsefulClass = BaseClass.extend.call(EventEmitter, 'UsefulClass');
 ```
 
+## inherits from all other class or constructor ... Function
+
+```js
+  Function.prototype.extend = BaseClass.extend;
+
+  var SimpleClass = Object.extend('SimpleClass');
+  var CustomArray = Array.extend('CustomArray');
+
+  var EventEmitter = require('events').EventEmitter;
+  var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
+```
+
 # EXAMPLES:
 
 ```js
-
     var BaseClass = require('base-class-extend');
 
     // SimpleClass
-    var SimpleClass = BaseClass.extend();
+    var SimpleClass = BaseClass.extend('SimpleClass');
     var s1 = new SimpleClass();
 
     // Animal
@@ -125,6 +144,7 @@ Your new object
       new: function Animal(name) {
         if (!(this instanceof Animal))
           return Animal.new.apply(Animal, arguments);
+        BaseClass.apply(this); // or Animal.super_.apply(this);
         this.name = name;
       },
       get name() { return this._name; }, // getter
@@ -153,7 +173,7 @@ Your new object
       new: function Cat() {
         if (!(this instanceof Cat))
           return Cat.new.apply(Cat, arguments);
-        return Cat.super_.apply(this, arguments) || this;
+        Cat.super_.apply(this, arguments);
       }
     });
     var c1 = Cat.new('Kitty');
@@ -163,7 +183,7 @@ Your new object
       new: function Dog() {
         if (!(this instanceof Dog))
           return Dog.new.apply(Dog, arguments);
-        return Dog.super_.apply(this, arguments) || this;
+        Dog.super_.apply(this, arguments);
       },
     }, {
       init: function () {
