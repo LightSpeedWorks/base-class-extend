@@ -15,6 +15,7 @@
     new: function Animal(name) {
       if (!(this instanceof Animal))
         return new Animal(name);
+      BaseClass.apply(this); // or Animal.super_.apply(this);
       this.name = name;
     },
     get name() { return this._name; },
@@ -36,7 +37,7 @@
     new: function Bear(name) {
       if (!(this instanceof Bear))
         return new Bear(name);
-      return Bear.super_.apply(this, arguments) || this;
+      Bear.super_.apply(this, arguments);
     }});
 
   var b1 = new Bear('Pooh');
@@ -68,7 +69,7 @@
     new: function () {
       if (!(this instanceof Elephant))
         return new Elephant(name);
-      return Elephant.super_.apply(this, arguments) || this;
+      Elephant.super_.apply(this, arguments);
     }});
 
   var e1 = new Elephant('Dumbo');

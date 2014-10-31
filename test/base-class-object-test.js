@@ -40,18 +40,18 @@
   var s22 = SimpleClass2.new();
   var s23 = SimpleClass2();
 
-  checkConstructorName('BaseClass', b1, b2, b3);
-  checkConstructorName('SimpleClass0', s01, s02, s03);
-  checkConstructorName('SimpleClass1', s11, s12, s13);
-  checkConstructorName('SimpleClass2', s21, s22, s23);
+  checkConstructor(BaseClass, b1, b2, b3);
+  checkConstructor(SimpleClass0, s01, s02, s03);
+  checkConstructor(SimpleClass1, s11, s12, s13);
+  checkConstructor(SimpleClass2, s21, s22, s23);
 
-  function checkConstructorName(ctorName) {
+  function checkConstructor(ctor) {
     var objs = Array.prototype.slice.call(arguments, 1);
 
     objs.forEach(function (obj) {
       console.log(obj ? obj.constructor.name : '');
       if (obj == null) return;
-      if (obj.constructor.name !== ctorName)
-        throw new TypeError(obj.constructor.name + ' !== ' + ctorName);
+      if (obj.constructor !== ctor)
+        throw new TypeError(obj.constructor.name + ' !== ' + ctor.name);
     });
   }
