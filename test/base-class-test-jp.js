@@ -55,12 +55,12 @@
 
   var Dog = Animal.extend('Dog');
 
-  var d1 = new Dog('Pochi');
-  d1.introduce(); // -> 私の名前はPochiです。私はDogです。
-  var d2 = Dog('Pochi');
-  d2.introduce(); // -> 私の名前はPochiです。私はDogです。
-  var d3 = Dog.new('Pochi');
-  d3.introduce(); // -> 私の名前はPochiです。私はDogです。
+  var d1 = new Dog('Hachi');
+  d1.introduce(); // -> 私の名前はHachiです。私はDogです。
+  var d2 = Dog('Hachi');
+  d2.introduce(); // -> 私の名前はHachiです。私はDogです。
+  var d3 = Dog.new('Hachi');
+  d3.introduce(); // -> 私の名前はHachiです。私はDogです。
 
   var Elephant = Animal.extend('Elephant', {
     new: function () {
@@ -92,9 +92,9 @@
   assertNames(c1, 'c1', 'Kitty', '$NoName$');
   assertNames(c2, 'c2', 'Kitty', '$NoName$');
   assertNames(c3, 'c3', 'Kitty', '$NoName$');
-  assertNames(d1, 'd1', 'Pochi', 'Dog');
-  assertNames(d2, 'd2', 'Pochi', 'Dog');
-  assertNames(d3, 'd3', 'Pochi', 'Dog');
+  assertNames(d1, 'd1', 'Hachi', 'Dog');
+  assertNames(d2, 'd2', 'Hachi', 'Dog');
+  assertNames(d3, 'd3', 'Hachi', 'Dog');
   assertNames(e1, 'e1', 'Dumbo', 'Elephant');
   assertNames(e2, 'e2', 'Dumbo', 'Elephant');
   assertNames(e3, 'e3', 'Dumbo', 'Elephant');
