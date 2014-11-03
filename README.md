@@ -37,10 +37,10 @@ var YourSubClass = YourClass.extend([name], [proto], [classProps]);
 
 ### Parameters
 
-  + *BaseClass*: Base class or Super class for inherits
-  + *name*: string name of your class, optional
-  + *proto*: the prototype object for your class, optional
-  + *classProps*: the object for class or static properties, optional
+  + **BaseClass**: Base class or Super class for inherits
+  + **name**: string name of your class, optional
+  + **proto**: the prototype object for your class, optional
+  + **classProps**: the object for class or static properties, optional
 
 ### Returns
 
@@ -89,7 +89,7 @@ var yourObj = new YourClass();
 
 ### Parameters
 
-  + *arguments*...: pass to constructor, optional
+  + **arguments**...: pass to constructor, optional
 
 ### Returns
 
@@ -105,6 +105,31 @@ var SimpleClass = Object.extend('SimpleClass');
 
 // or simply
 var SimpleClass = BaseClass.extend.call(Object, 'SimpleClass');
+```
+
+### inherits from Array
+
+```js
+Array.extend = BaseClass.extend;
+var CustomArray = Array.extend('CustomArray');
+
+// or simply
+var CustomArray = BaseClass.extend.call(Array, 'CustomArray');
+
+var ca = new CustomArray(1, 2, 3);
+// returns [1, 2, 3] like custom array.
+```
+
+### inherits from Error
+
+```js
+Error.extend = BaseClass.extend;
+var CustomError = Error.extend('CustomError');
+
+// or simply
+var CustomError = BaseClass.extend.call(Error, 'CustomError');
+
+var ce = new CustomError('message');
 ```
 
 ### inherits from EventEmitter
@@ -125,6 +150,7 @@ Function.prototype.extend = BaseClass.extend;
 
 var SimpleClass = Object.extend('SimpleClass');
 var CustomArray = Array.extend('CustomArray');
+var CustomError = Error.extend('CustomError');
 
 var EventEmitter = require('events').EventEmitter;
 var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
@@ -138,7 +164,7 @@ Also support getter/setter, and normal methods to access private variables.
 ### Format
 
 ```js
-// in new method or constructor function
+// defined in 'new' method or 'constructor' function
 var private1;
 this.private({
   method1: function method1() {
@@ -158,7 +184,7 @@ this.private({
 
 ### Details
 
-  A simple and quick sample:
+  Sample:
 
 ```js
 var YourClass = BaseClass.extend({
@@ -178,6 +204,8 @@ var YourClass = BaseClass.extend({
 
 ```js
 // Animal
+
+// BaseClass
 var BaseClass = require('base-class-extend');
 
 // SimpleClass
@@ -247,6 +275,8 @@ Dog.animalClassMethod(); // -> Animal class method
 
 ```js
 // Vector2D/Vector3D
+
+// BaseClass
 var BaseClass = require('base-class-extend');
 
 // sample: JavaScript Object.defineProperty - SONICMOOV LAB
