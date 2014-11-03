@@ -112,10 +112,10 @@ var SimpleClass = BaseClass.extend.call(Object, 'SimpleClass');
 ```js
 var EventEmitter = require('events').EventEmitter;
 EventEmitter.extend = BaseClass.extend;
-var UsefulClass = EventEmitter.extend('UsefulClass');
+var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 
 // or simply
-var UsefulClass = BaseClass.extend.call(EventEmitter, 'UsefulClass');
+var CustomEventEmitter = BaseClass.extend.call(EventEmitter, 'CustomEventEmitter');
 ```
 
 ### inherits from all other class or constructor ... Function
@@ -150,7 +150,7 @@ this.private({
 
 ### Parameters
 
-  + *prototype*: the prototype object contains methods accessing private variables, required
+  + **proto**: the prototype object contains methods accessing private variables, required
 
 ### Returns
 
