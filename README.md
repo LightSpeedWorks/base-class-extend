@@ -1,254 +1,302 @@
 base-class-extend
 ====
 
-BaseClass define classes in JavaScript.
+BaseClass.extend defines classes in JavaScript.<br/>
 This is simple module providing a simple Class function to
 simplify class definition in JavaScript.
 
 Supports getter/setter.
 
-Easy to use, easy to inherit/extend.
-
+Easy to use, easy to inherit/extend.<br/>
 Also supports inheritance from `Array`, `Error`, or Node.js `events.EventEmitter`.
 
-no difficult keywords,
-no `constructor`, no `prototype`, no `__proto__`,
+no difficult keywords,<br/>
+no `constructor`, no `prototype`, no `__proto__`,<br/>
 no `Object.defineProperty`, no `Object.setPrototypeOf`, etc ...
 
 # INSTALL:
 
 ```bash
-  $ npm install base-class-extend
+$ npm install base-class-extend
 ```
 
 # USAGE:
 
 ```js
-  var BaseClass = require('base-class-extend');
+var BaseClass = require('base-class-extend');
 ```
 
-# method: BaseClass.extend
+## method: Class.extend(name, proto, classProps)
 
-## Prototype
+### Format
 
 ```js
-  var YourClass = BaseClass.extend([name], prototype, [classProps]);
+var YourClass = BaseClass.extend([name], [proto], [classProps]);
+var YourSubClass = YourClass.extend([name], [proto], [classProps]);
 ```
 
-## Parameters
+### Parameters
 
-+ *BaseClass*: Base class or Super class for inherits
+  + *BaseClass*: Base class or Super class for inherits
+  + *name*: string name of your class, optional
+  + *proto*: the prototype object for your class, optional
+  + *classProps*: the object for class or static properties, optional
 
-+ *name*: string name of your class, optional
+### Returns
 
-+ *prototype*: the prototype object for your class, optional
+  The newly defined class (Your class is subclass of BaseClass)
 
-+ *classProps*: class or static properties object, optional
+### Details
 
-## Returns
-
-The newly defined class (Your class is subclass of BaseClass)
-
-## Details
-
-A simple and quick sample:
+  A simple and quick sample:
 
 ```js
-  var BaseClass = require('base-class-extend');
+var BaseClass = require('base-class-extend');
 
-  var MyClass = BaseClass.extend({
-    new: function MyClass(value) {
-      this.value = value; // via setter
-    },
-    show: function show() {
-      console.log(this.value); // via getter
-    },
-    get value() { return this._value; },
-    set value(value) {
-      if (!(value >= 1 && value <= 10))
-        throw new Error('Out of range');
-      this._value = value; },
-  });
+var MyClass = BaseClass.extend({
+  new: function MyClass(value) {
+    this.value = value; // via setter
+  },
+  show: function show() {
+    console.log(this.value); // via getter
+  },
+  // getter
+  get value() { return this._value; },
+  // setter
+  set value(value) {
+    if (value < 1 || value > 6)
+      throw new RangeError('Out of range');
+    this._value = value; },
+});
 
-  var myObj = new MyClass(5);
-  myObj.value++;
-  myObj.show();
+var myObj = new MyClass(5);
+myObj.value++; // 5 -> 6
+myObj.show();
+myObj.value++; // 6 -> 7 throws Error
 ```
 
-# method: BaseClass.new
+## method: Class.new(...)
 
-## Prototype
+### Format
 
 ```js
-  var YourClass = BaseClass.extend('YourClass');
-  var yourObj = YourClass.new();
+var YourClass = BaseClass.extend('YourClass');
+var yourObj = YourClass.new();
 
-  // or
-  var yourObj = new YourClass();
+// or
+var yourObj = new YourClass();
 ```
 
-## Parameters
+### Parameters
 
-+ *arguments*...: pass to constructor, optional
+  + *arguments*...: pass to constructor, optional
 
-## Returns
+### Returns
 
-Your new object
+  Your new object
 
-# without BaseClass, inherits from Object, or other Classes
+## without BaseClass, inherits from Object, or other Classes
 
-## inherits from Object
+### inherits from Object
 
 ```js
-  Object.extend = BaseClass.extend;
-  var SimpleClass = Object.extend('SimpleClass');
+Object.extend = BaseClass.extend;
+var SimpleClass = Object.extend('SimpleClass');
 
-  // or simply
-  var SimpleClass = BaseClass.extend.call(Object, 'SimpleClass');
+// or simply
+var SimpleClass = BaseClass.extend.call(Object, 'SimpleClass');
 ```
 
-## inherits from EventEmitter
+### inherits from EventEmitter
 
 ```js
-  var EventEmitter = require('events').EventEmitter;
-  EventEmitter.extend = BaseClass.extend;
-  var UsefulClass = EventEmitter.extend('UsefulClass');
+var EventEmitter = require('events').EventEmitter;
+EventEmitter.extend = BaseClass.extend;
+var UsefulClass = EventEmitter.extend('UsefulClass');
 
-  // or simply
-  var UsefulClass = BaseClass.extend.call(EventEmitter, 'UsefulClass');
+// or simply
+var UsefulClass = BaseClass.extend.call(EventEmitter, 'UsefulClass');
 ```
 
-## inherits from all other class or constructor ... Function
+### inherits from all other class or constructor ... Function
 
 ```js
-  Function.prototype.extend = BaseClass.extend;
+Function.prototype.extend = BaseClass.extend;
 
-  var SimpleClass = Object.extend('SimpleClass');
-  var CustomArray = Array.extend('CustomArray');
+var SimpleClass = Object.extend('SimpleClass');
+var CustomArray = Array.extend('CustomArray');
 
-  var EventEmitter = require('events').EventEmitter;
-  var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
+var EventEmitter = require('events').EventEmitter;
+var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
+```
+
+## method: this.private(proto)
+
+You can define private variables, hidden variables.<br/>
+Also support getter/setter, and normal methods to access private variables.
+
+### Format
+
+```js
+// in new method or constructor function
+var private1;
+this.private({
+  method1: function method1() {
+    console.log(private1); },
+  get prop1() { return private1; },
+  set prop1(val) { private1 = val; },
+});
+```
+
+### Parameters
+
+  + *prototype*: the prototype object contains methods accessing private variables, required
+
+### Returns
+
+  prototype object you passed
+
+### Details
+
+  A simple and quick sample:
+
+```js
+var YourClass = BaseClass.extend({
+  new: function YourClass() {
+    var private1 = 123; // access via getter/setter
+    var private2 = 'abc'; // access via getter, no setter
+    this.private({
+      get private1() { return private1; }, // getter
+      set private1(val) { private1 = val; }, // setter
+      get private2() { return private2; }, // getter
+    });
+  },
+});
 ```
 
 # EXAMPLES:
 
 ```js
-    var BaseClass = require('base-class-extend');
+// Animal
+var BaseClass = require('base-class-extend');
 
-    // SimpleClass
-    var SimpleClass = BaseClass.extend('SimpleClass');
-    var s1 = new SimpleClass();
+// SimpleClass
+var SimpleClass = BaseClass.extend('SimpleClass');
+var s1 = new SimpleClass();
 
-    // Animal
-    var Animal = BaseClass.extend({
-      new: function Animal(name) {
-        if (!(this instanceof Animal))
-          return Animal.new.apply(Animal, arguments);
-        BaseClass.apply(this); // or Animal.super_.apply(this);
-        this.name = name;
-      },
-      get name() { return this._name; }, // getter
-      set name(name) { this._name = name; }, // setter
-      introduce: function () {
-        console.log('My name is ' + this.name);
-      },
-    }, {
-      init: function () {
-        console.log('Animal class init');
-      },
-      animalClassMethod: function () {
-        console.log('Animal class method');
-      }
-    }); // -> Animal class init
-    var a1 = new Animal('Annie');
-    a1.introduce(); // -> My name is Annie
-    Animal.animalClassMethod(); // -> Animal class method
+// Animal
+var Animal = BaseClass.extend({
+  new: function Animal(name) {
+    if (!(this instanceof Animal))
+      return Animal.new.apply(Animal, arguments);
+    BaseClass.apply(this); // or Animal.super_.apply(this);
+    this.name = name;
+  },
+  get name() { return this._name; }, // getter
+  set name(name) { this._name = name; }, // setter
+  introduce: function () {
+    console.log('My name is ' + this.name);
+  },
+}, {
+  init: function () {
+    console.log('Animal class init');
+  },
+  animalClassMethod: function () {
+    console.log('Animal class method');
+  }
+}); // -> Animal class init
+var a1 = new Animal('Annie');
+a1.introduce(); // -> My name is Annie
+Animal.animalClassMethod(); // -> Animal class method
 
-    // Bear
-    var Bear = Animal.extend('Bear');
-    var b1 = Bear('Pooh'); // new less
-    b1.introduce(); // -> My name is Pooh
+// Bear
+var Bear = Animal.extend('Bear');
+var b1 = Bear('Pooh'); // new less
+b1.introduce(); // -> My name is Pooh
 
-    var Cat = Animal.extend({
-      new: function Cat() {
-        if (!(this instanceof Cat))
-          return Cat.new.apply(Cat, arguments);
-        Cat.super_.apply(this, arguments);
-      }
-    });
-    var c1 = Cat.new('Kitty');
-    c1.introduce(); // -> My name is Kitty
+var Cat = Animal.extend({
+  new: function Cat() {
+    if (!(this instanceof Cat))
+      return Cat.new.apply(Cat, arguments);
+    Cat.super_.apply(this, arguments);
+  }
+});
+var c1 = Cat.new('Kitty');
+c1.introduce(); // -> My name is Kitty
 
-    var Dog = Animal.extend({
-      new: function Dog() {
-        if (!(this instanceof Dog))
-          return Dog.new.apply(Dog, arguments);
-        Dog.super_.apply(this, arguments);
-      },
-    }, {
-      init: function () {
-        console.log('Dog class init');
-      },
-      dogClassMethod: function () {
-        this.animalClassMethod();
-        console.log('Dog class method');
-      }
-    }); // -> Dog init
-    var d1 = Dog.new('Hachi'); // Class method new call
-    d1.introduce(); // -> My name is Hachi
-    Dog.dogClassMethod(); // -> Animal class method, Dog class method
-    Dog.animalClassMethod(); // -> Animal class method
+var Dog = Animal.extend({
+  new: function Dog() {
+    if (!(this instanceof Dog))
+      return Dog.new.apply(Dog, arguments);
+    Dog.super_.apply(this, arguments);
+  },
+}, {
+  init: function () {
+    console.log('Dog class init');
+  },
+  dogClassMethod: function () {
+    this.animalClassMethod();
+    console.log('Dog class method');
+  }
+}); // -> Dog init
+var d1 = Dog.new('Hachi'); // Class method new call
+d1.introduce(); // -> My name is Hachi
+Dog.dogClassMethod(); // -> Animal class method, Dog class method
+Dog.animalClassMethod(); // -> Animal class method
+```
 
+```js
+// Vector2D/Vector3D
+var BaseClass = require('base-class-extend');
 
-    // sample: JavaScript Object.defineProperty - SONICMOOV LAB
-    // http://lab.sonicmoov.com/development/javascript-object-defineproperty/
+// sample: JavaScript Object.defineProperty - SONICMOOV LAB
+// http://lab.sonicmoov.com/development/javascript-object-defineproperty/
 
-    var Vector2D = BaseClass.extend({
-      new: function Vector2D(x, y) {
-        this._length = 0;
-        this._changed = true;
-        this._x = x;
-        this._y = y;
-      },
-      get x()  { return this._x; },
-      set x(x) { this._x = x; this._changed = true; },
-      get y()  { return this._y; },
-      set y(y) { this._y = y; this._changed = true; },
-      get length() {
-        if (this._changed) {
-          this._length = Math.sqrt(this._x * this._x + this._y * this._y);
-          this._changed = false;
-        }
-        return this._length;
-      },
-      set: function (x, y) { this._x = x; this._y = y; this._changed = true; },
-    });
+var Vector2D = BaseClass.extend({
+  new: function Vector2D(x, y) {
+    this._length = 0;
+    this._changed = true;
+    this._x = x;
+    this._y = y;
+  },
+  get x()  { return this._x; },
+  set x(x) { this._x = x; this._changed = true; },
+  get y()  { return this._y; },
+  set y(y) { this._y = y; this._changed = true; },
+  get length() {
+    if (this._changed) {
+      this._length = Math.sqrt(this._x * this._x + this._y * this._y);
+      this._changed = false;
+    }
+    return this._length;
+  },
+  set: function (x, y) { this._x = x; this._y = y; this._changed = true; },
+});
 
-    var v2 = new Vector2D(3, 4);
-    console.log('V2D(3, 4):', v2.length);
-    v2.set(1, 2);
-    console.log('V2D(1, 2):', v2.length);
-    v2.set(1, 1);
-    console.log('V2D(1, 1):', v2.length);
+var v2 = new Vector2D(3, 4);
+console.log('V2D(3, 4):', v2.length);
+v2.set(1, 2);
+console.log('V2D(1, 2):', v2.length);
+v2.set(1, 1);
+console.log('V2D(1, 1):', v2.length);
 
-    var Vector3D = Vector2D.extend({
-      new: function Vector3D(x, y, z) {
-        Vector2D.call(this, x, y);
-        this._z = z;
-      },
-      get length() {
-        if (this._changed) {
-          this._length = Math.sqrt(this._x * this._x + this._y * this._y + this._z * this._z);
-          this._changed = false;
-        }
-        return this._length;
-      },
-      set: function (x, y, z) { this._x = x; this._y = y; this._z = z; this._changed = true; },
-    });
+var Vector3D = Vector2D.extend({
+  new: function Vector3D(x, y, z) {
+    Vector2D.call(this, x, y);
+    this._z = z;
+  },
+  get length() {
+    if (this._changed) {
+      this._length = Math.sqrt(this._x * this._x + this._y * this._y + this._z * this._z);
+      this._changed = false;
+    }
+    return this._length;
+  },
+  set: function (x, y, z) { this._x = x; this._y = y; this._z = z; this._changed = true; },
+});
 
-    var v3 = new Vector3D(3, 4, 5);
-    console.log('V3D(3, 4, 5):', v3.length);
-
+var v3 = new Vector3D(3, 4, 5);
+console.log('V3D(3, 4, 5):', v3.length);
 ```
 
 # LICENSE:
