@@ -1,6 +1,6 @@
 {
   "name": "base-class-extend",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Base Class constructor for easy class definition - supports getter/setter, inherit/extend Array Error or EventEmitter etc",
   "main": "lib/base-class.js",
   "scripts": {
