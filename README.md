@@ -1,4 +1,4 @@
-base-class-extend
+[base-class-extend](https://www.npmjs.org/package/base-class-extend) - npm
 ====
 
 BaseClass.extend defines classes in JavaScript.<br/>
