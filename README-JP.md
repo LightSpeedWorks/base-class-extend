@@ -1,66 +1,65 @@
 [base-class-extend](https://www.npmjs.org/package/base-class-extend) - npm
 ====
 
-[BaseClass.extend](https://www.npmjs.org/package/base-class-extend) defines class in JavaScript.<br/>
-This is simple module providing a simple Class function to
-simplify class definition in JavaScript.
+[English version](README.md#readme)
 
-Supports getter/setter.
+[BaseClass.extend](https://www.npmjs.org/package/base-class-extend)はJavaScriptのクラスを定義します。<br/>
+これはJavaScriptのクラスを単純に定義する機能を提供するシンプルなモジュールです。
 
-Easy to use, easy to inherit/extend.<br/>
-Also supports inheritance from `Array`, `Error`, or Node.js `events.EventEmitter`.
+getter/setterをサポートします。
 
-no difficult keywords,<br/>
-no `constructor`, no `prototype`, no `__proto__`,<br/>
-no `Object.defineProperty`, no `Object.setPrototypeOf`, etc ...
+簡単に使え、簡単に継承できます。<br/>
+`Array`, `Error`, やNode.jsの`events.EventEmitter`からの継承をサポートします。
 
-[Japanese version/■日本語版はこちら■](README-JP.md#readme)
+難しいキーワードは必要ありません。<br/>
+`constructor`も、`prototype`も、`__proto__`も、<br/>
+`Object.defineProperty`も、`Object.setPrototypeOf`も、等も不要です。
 
 ![base-class.png](images/base-class.png)
 
-# INSTALL:
+# インストール:
 
 ```bash
 $ npm install base-class-extend
 ```
 
-# USAGE:
+# 使い方:
 
 ```js
 var BaseClass = require('base-class-extend');
 ```
 
-## method: Class.extend(name, proto, classProps)
+## メソッド: Class.extend(name, proto, classProps)
 
-  Define new class that inherited from Base Class.
+  基底クラスを継承した新しいクラスを定義します。
 
-### Format
+### 形式
 
 ```js
 var YourClass = BaseClass.extend([name], [proto], [classProps]);
 var YourSubClass = YourClass.extend([name], [proto], [classProps]);
 ```
 
-### Parameters
+### パラメータ
 
-  + **BaseClass**: Base class or Super class for inherits
-  + **name**: string name of your class, optional
-  + **proto**: the prototype object for your class, optional
-    + **new** or **constructor**: constructor function, optional
-    + **get** getter or **set** setter: getter/setter, optional
-    + **any methods**: any method or member function, optional
-  + **classProps**: the object for class or static properties, optional
-    + **init** or **initialize**: initialize function, optional
-    + **get** getter or **set** setter: getter/setter, optional
-    + **any methods**: any static method or class function, optional
+  + **BaseClass**: 継承のための規定クラスまたはスーパークラス
+  + **name**: 新しいクラスの文字列の名前 (省略可)
+  + **proto**: 新しいクラスのプロトタイプオブジェクト (省略可)
+    + **new**または**constructor**: コンストラクタ関数 (省略可)
+    + **get** getterまたは**set** setter: getter/setter,  (省略可)
+    + **any methods**: メソッドまたはメンバー関数 (省略可)
+  + **classProps**: クラス／静的プロパティのオブジェクト (省略可)
+    + **init**または**initialize**: 初期化関数 (省略可)
+    + **get** getterまたは**set** setter: getter/setter,  (省略可)
+    + **any methods**: 静的メソッドまたはクラス関数 (省略可)
 
-### Returns
+### 返り値
 
-  The newly defined class. (Your class is subclass of BaseClass)
+  新しく定義されたクラス。(新しいクラスは基底クラスのサブクラス)
 
-### Details
+### 詳細
 
-  A simple and quick sample:
+  簡単なサンプル:
 
 ```js
 var BaseClass = require('base-class-extend');
@@ -87,11 +86,11 @@ myObj.show();
 myObj.value++; // 6 -> 7 throws Error
 ```
 
-## method: Class.new(...)
+## メソッド: Class.new(...)
 
-  Create an object, instance of the Class.
+  クラスのインスタンスオブジェクトを作成する。
 
-### Format
+### 形式
 
 ```js
 var YourClass = BaseClass.extend('YourClass');
@@ -105,63 +104,63 @@ var yourObj = YourClass();
 // required: default constructor or right defined constructor
 ```
 
-### Parameters
+### パラメータ
 
-  + **arguments**...: pass to constructor, optional
+  + **arguments**...: コンストラクタ関数にわたされる(省略可)
 
-### Returns
+### 返り値
 
-  Your new object, instance of the Class.
+  クラスの新しいインスタンスオブジェクトを返す。
 
-## without BaseClass, inherits from Object, or other Classes
+## BaseClass無しで、Objectやその他のクラスからの継承
 
-### inherits from Object
+### Objectクラスからの継承
 
 ```js
 Object.extend = BaseClass.extend;
 var SimpleClass = Object.extend('SimpleClass');
 
-// or simply
+// または単純に
 var SimpleClass = BaseClass.extend.call(Object, 'SimpleClass');
 ```
 
-### inherits from Array
+### Arrayクラスからの継承
 
 ```js
 Array.extend = BaseClass.extend;
 var CustomArray = Array.extend('CustomArray');
 
-// or simply
+// または単純に
 var CustomArray = BaseClass.extend.call(Array, 'CustomArray');
 
 var ca = new CustomArray(1, 2, 3);
-// returns [1, 2, 3] like custom array.
+// カスタム配列 [1, 2, 3] を返す
 ```
 
-### inherits from Error
+### Errorクラスからの継承
 
 ```js
 Error.extend = BaseClass.extend;
 var CustomError = Error.extend('CustomError');
 
-// or simply
+// または単純に
 var CustomError = BaseClass.extend.call(Error, 'CustomError');
 
 var ce = new CustomError('message');
 ```
 
-### inherits from EventEmitter
+### EventEmitterクラスからの継承
 
 ```js
 var EventEmitter = require('events').EventEmitter;
 EventEmitter.extend = BaseClass.extend;
 var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 
-// or simply
+// または単純に
 var CustomEventEmitter = BaseClass.extend.call(EventEmitter, 'CustomEventEmitter');
 ```
 
-### inherits from all other class or constructor ... Function
+### 他の全てのクラスつまりコンストラクタ関数からの継承 ... Function
 
 ```js
 Function.prototype.extend = BaseClass.extend;
@@ -174,15 +173,15 @@ var EventEmitter = require('events').EventEmitter;
 var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 ```
 
-## method: this.private(proto)
+## メソッド: this.private(proto)
 
-  You can define private variables, hidden variables.<br/>
-  Also support getter/setter, and normal methods to access private variables.
+  プライベート変数または隠された変数を定義できます。<br/>
+  getter/setterやプライベート変数をアクセスできる通常のメソッドをサポートします。
 
-### Format
+### 形式
 
 ```js
-// defined in 'new' method or 'constructor' function
+// 'new'メソッドまたは'constructor'関数の中に定義すること
 var private1;
 this.private({
   method1: function method1() {
@@ -192,25 +191,25 @@ this.private({
 });
 ```
 
-### Parameters
+### パラメータ
 
-  + **proto**: the prototype object contains methods accessing private variables, required
-    + **get** getter or **set** setter: getter/setter, optional
-    + **any methods**: any method or member function, optional
+  + **proto**: プライベート変数にアクセスできるメソッドが含まれるプロトタイプオブジェクト (必須)
+    + **get** getterまたは**set** setter: getter/setter (省略可)
+    + **any methods**: メソッドまたはメンバー関数 (省略可)
 
-### Returns
+### 返り値
 
-  The prototype object you passed.
+  渡したプロトタイプオブジェクト。
 
-### Details
+### 詳細
 
-  Sample:
+  サンプル:
 
 ```js
 var YourClass = BaseClass.extend({
   new: function YourClass() {
-    var private1 = 123; // access via getter/setter
-    var private2 = 'abc'; // access via getter, no setter
+    var private1 = 123; // getter/setter経由のアクセス
+    var private2 = 'abc'; // getter経由のアクセス, setter無し
     this.private({
       get private1() { return private1; }, // getter
       set private1(val) { private1 = val; }, // setter
@@ -220,11 +219,11 @@ var YourClass = BaseClass.extend({
 });
 ```
 
-## property: this.constructor
+## プロパティ: this.constructor
 
-  Get constructor function. (Class)
+  コンストラクタ関数(クラス)を取得する。
 
-### Format
+### 形式
 
 ```js
 var MyClass = BaseClass.extend('MyClass');
@@ -232,15 +231,15 @@ var o1 = new MyClass();
 console.log(o1.constructor === MyClass); // -> true
 ```
 
-### Returns
+### 返り値
 
-  The constructor function. (Class)
+  コンストラクタ関数(クラス)。
 
-## property: this.constructors
+## プロパティ: this.constructors
 
-  Get an array of constructor functions. (Classes)
+  コンストラクタ関数(クラス)の配列を取得する。
 
-### Format
+### 形式
 
 ```js
 var MyClass = BaseClass.extend('MyClass');
@@ -251,15 +250,15 @@ console.log(classes[1] === BaseClass); // -> true
 console.log(classes[2] === Object);    // -> true
 ```
 
-## Returns
+## 返り値
 
-  An array of constructor functions. (Classes)
+  コンストラクタ関数(クラス)の配列。
 
-## property: Class.constructors
+## プロパティ: Class.constructors
 
-  Get an array of constructor functions.
+  コンストラクタ関数(クラス)の配列を取得する。
 
-### Format
+### 形式
 
 ```js
 var MyClass = BaseClass.extend('MyClass');
@@ -269,11 +268,11 @@ console.log(classes[1] === BaseClass); // -> true
 console.log(classes[2] === Object);    // -> true
 ```
 
-## Returns
+## 返り値
 
-  An array of constructor functions.
+  コンストラクタ関数(クラス)の配列。
 
-# EXAMPLES:
+# 使用例:
 
 ```js
 // Animal
@@ -402,6 +401,6 @@ var v3 = new Vector3D(3, 4, 5);
 console.log('V3D(3, 4, 5):', v3.length);
 ```
 
-# LICENSE:
+# ライセンス:
 
   MIT
