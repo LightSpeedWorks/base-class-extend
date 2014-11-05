@@ -1,7 +1,7 @@
 [base-class-extend](https://www.npmjs.org/package/base-class-extend) - npm
 ====
 
-BaseClass.extend defines classes in JavaScript.<br/>
+[BaseClass.extend](https://www.npmjs.org/package/base-class-extend) defines classes in JavaScript.<br/>
 This is simple module providing a simple Class function to
 simplify class definition in JavaScript.
 
@@ -40,7 +40,13 @@ var YourSubClass = YourClass.extend([name], [proto], [classProps]);
   + **BaseClass**: Base class or Super class for inherits
   + **name**: string name of your class, optional
   + **proto**: the prototype object for your class, optional
+    + **new** or **constructor**: constructor function, optional
+    + **get** getter or **set** setter: getter/setter, optional
+    + **any methods**: any method or member function, optional
   + **classProps**: the object for class or static properties, optional
+    + **init** or **initialize**: initialize function, optional
+    + **get** getter or **set** setter: getter/setter, optional
+    + **any methods**: any static method or class function, optional
 
 ### Returns
 
@@ -177,6 +183,8 @@ this.private({
 ### Parameters
 
   + **proto**: the prototype object contains methods accessing private variables, required
+    + **get** getter or **set** setter: getter/setter, optional
+    + **any methods**: any method or member function, optional
 
 ### Returns
 
