@@ -1,0 +1,14 @@
+<script src="../lib/base-class.js">
+</script>
+
+<script>
+var Klass = BaseClass.extend('Klass');
+var k1 = new Klass();
+var k2 = Klass.new();
+var k3 = Klass();
+function mapName(e) { return e.name; }
+console.log(Klass.constructors.map(mapName).join(' < '), ': Klass');
+console.log(k1.constructors.map(mapName).join(' < '), ': k1');
+console.log(k2.constructors.map(mapName).join(' < '), ': k2');
+console.log(k3.constructors.map(mapName).join(' < '), ': k3');
+</script>
