@@ -49,3 +49,10 @@
         throw new TypeError(obj.constructor.name + ' !== ' + ctor.name);
     });
   }
+
+  console.log();
+  function mapName(elem) { return elem.name; }
+  console.log(p1.constructors.map(mapName).join(' < '));
+  console.log(p2.constructors.map(mapName).join(' < '));
+  console.log(p3.constructors.map(mapName).join(' < '));
+  console.log(PrivateClass1.constructors.map(mapName).join(' < '));

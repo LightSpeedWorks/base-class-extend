@@ -58,3 +58,10 @@
 
   var v3 = new Vector3D(3, 4, 5);
   console.log('V3D(3, 4, 5):', v3.length);
+
+  console.log();
+  function mapName(elem) { return elem.name; }
+  console.log(v2.constructors.map(mapName).join(' < '));
+  console.log(Vector2D.constructors.map(mapName).join(' < '));
+  console.log(v3.constructors.map(mapName).join(' < '));
+  console.log(Vector3D.constructors.map(mapName).join(' < '));

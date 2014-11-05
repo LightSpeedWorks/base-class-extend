@@ -75,3 +75,19 @@
   d1.introduce(); // -> My name is Hachi. I am a Dog.
   Dog.dogClassMethod(); // -> Animal class method. (Animal), Dog class method. (Dog)
   Dog.animalClassMethod(); // -> Animal class method. (Dog)
+
+  console.log();
+  function mapName(elem) { return elem.name; }
+  console.log(a1.constructors.map(mapName).join(' < '));
+  console.log(Animal.constructors.map(mapName).join(' < '));
+  console.log(b1.constructors.map(mapName).join(' < '));
+  console.log(Bear.constructors.map(mapName).join(' < '));
+  console.log(c1.constructors.map(mapName).join(' < '));
+  console.log(Cat.constructors.map(mapName).join(' < '));
+  console.log(d1.constructors.map(mapName).join(' < '));
+  console.log(Dog.constructors.map(mapName).join(' < '));
+
+  var Klass = BaseClass.extend.call(Object, 'Klass');
+  var k1 = new Klass();
+  console.log(Klass.constructors.map(mapName).join(' < '));
+  console.log(k1.constructors.map(mapName).join(' < '));

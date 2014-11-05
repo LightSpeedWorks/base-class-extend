@@ -27,4 +27,11 @@
   var myObj = new MyClass(5);
   myObj.value++; // 5 -> 6
   myObj.show();
-  myObj.value++; // 6 -> 7 throws Error
+  try {
+    myObj.value++; // 6 -> 7 throws Error
+  } catch (e) { console.log(e.stack || (e + '')); }
+
+  console.log();
+  function mapName(elem) { return elem.name; }
+  console.log(myObj.constructors.map(mapName).join(' < '));
+  console.log(MyClass.constructors.map(mapName).join(' < '));
