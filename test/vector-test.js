@@ -1,4 +1,4 @@
-// base-class-vector-test.js
+// vector-test.js
   'use strict';
 
   try {
@@ -44,6 +44,8 @@
       Vector2D.call(this, x, y);
       this._z = z;
     },
+    get z()  { return this._z; },
+    set z(z) { this._z = z; this._changed = true; },
     get length() {
       if (this._changed) {
         this._length = Math.sqrt(this._x * this._x + this._y * this._y + this._z * this._z);

@@ -1,4 +1,4 @@
-// base-class-object-test.js
+// object-test.js
   'use strict';
 
   try {

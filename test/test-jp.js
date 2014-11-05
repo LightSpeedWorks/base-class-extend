@@ -1,4 +1,4 @@
-// base-class-test-jp.js
+// test-jp.js
   'use strict';
 
   try {

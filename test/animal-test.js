@@ -1,4 +1,4 @@
-// base-class-animal-test.js
+// animal-test.js
   'use strict';
 
   try {

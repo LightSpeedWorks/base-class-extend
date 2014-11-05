@@ -1,4 +1,4 @@
-// base-class-quick.js
+// quick.js
   'use strict';
 
   try {

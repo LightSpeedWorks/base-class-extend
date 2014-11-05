@@ -1,4 +1,4 @@
-// base-class-function-test.js
+// function-test.js
   'use strict';
 
   try {

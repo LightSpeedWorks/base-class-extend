@@ -1,4 +1,4 @@
-// base-class-private-test.js
+// private-test.js
   'use strict';
 
   try {
