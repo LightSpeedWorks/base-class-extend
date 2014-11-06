@@ -42,7 +42,7 @@ var YourSubClass = YourClass.extend([name], [proto], [classProps]);
 
 ### パラメータ
 
-  + **BaseClass**: 継承のための規定クラスまたはスーパークラス
+  + **BaseClass**: 継承のための基底クラスまたはスーパークラス
   + **name**: 新しいクラスの文字列の名前 (省略可)
   + **proto**: 新しいクラスのプロトタイプオブジェクト (省略可)
     + **new**または**constructor**: コンストラクタ関数 (省略可)
@@ -52,6 +52,9 @@ var YourSubClass = YourClass.extend([name], [proto], [classProps]);
     + **init**または**initialize**: 初期化関数 (省略可)
     + **get** getterまたは**set** setter: getter/setter,  (省略可)
     + **any methods**: 静的メソッドまたはクラス関数 (省略可)
+
+  ※**proto**を省略した場合**classProps**も省略する必要がある<br/>
+  ※**classProps**を指定したい場合、省略したい**proto**の部分は`{}`と指定すると良い
 
 ### 返り値
 
@@ -66,10 +69,10 @@ var BaseClass = require('base-class-extend');
 
 var MyClass = BaseClass.extend({
   new: function MyClass(value) {
-    this.value = value; // via setter
+    this.value = value; // setter経由
   },
   show: function show() {
-    console.log(this.value); // via getter
+    console.log(this.value); // getter経由
   },
   // getter
   get value() { return this._value; },
@@ -96,12 +99,12 @@ myObj.value++; // 6 -> 7 throws Error
 var YourClass = BaseClass.extend('YourClass');
 var yourObj = YourClass.new();
 
-// or
+// または
 var yourObj = new YourClass();
 
-// or
+// または
 var yourObj = YourClass();
-// required: default constructor or right defined constructor
+// 必須: デフォルトコンストラクタまたは正しい定義のコンストラクタ
 ```
 
 ### パラメータ

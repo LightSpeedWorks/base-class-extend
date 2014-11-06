@@ -54,6 +54,9 @@ var YourSubClass = YourClass.extend([name], [proto], [classProps]);
     + **get** getter or **set** setter: getter/setter, optional
     + **any methods**: any static method or class function, optional
 
+  You have to omit **classProps** also, if you omit **proto**.<br/>
+  You have to specify **proto** or `{}`, if you want to specify **classProps**.
+
 ### Returns
 
   The newly defined class. (Your class is subclass of BaseClass)
@@ -107,7 +110,7 @@ var yourObj = YourClass();
 
 ### Parameters
 
-  + **arguments**...: pass to constructor, optional
+  + **arguments**...: pass to constructor function, optional
 
 ### Returns
 
@@ -115,7 +118,7 @@ var yourObj = YourClass();
 
 ## without BaseClass, inherits from Object, or other Classes
 
-### inherits from Object
+### inherits from Object class
 
 ```js
 Object.extend = BaseClass.extend;
@@ -125,7 +128,7 @@ var SimpleClass = Object.extend('SimpleClass');
 var SimpleClass = BaseClass.extend.call(Object, 'SimpleClass');
 ```
 
-### inherits from Array
+### inherits from Array class
 
 ```js
 Array.extend = BaseClass.extend;
@@ -138,7 +141,7 @@ var ca = new CustomArray(1, 2, 3);
 // returns [1, 2, 3] like custom array.
 ```
 
-### inherits from Error
+### inherits from Error class
 
 ```js
 Error.extend = BaseClass.extend;
@@ -150,7 +153,7 @@ var CustomError = BaseClass.extend.call(Error, 'CustomError');
 var ce = new CustomError('message');
 ```
 
-### inherits from EventEmitter
+### inherits from EventEmitter class
 
 ```js
 var EventEmitter = require('events').EventEmitter;
