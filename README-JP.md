@@ -8,10 +8,10 @@
 
 getter/setterをサポートします。
 
-簡単に使え、簡単に継承できます。<br/>
+簡単に使えて、簡単に継承できます。<br/>
 `Array`, `Error`, やNode.jsの`events.EventEmitter`からの継承をサポートします。
 
-難しいキーワードは必要ありません。<br/>
+難しいキーワードは全く必要ありません。<br/>
 `constructor`も、`prototype`も、`__proto__`も、<br/>
 `Object.defineProperty`も、`Object.setPrototypeOf`も、等も不要です。
 
