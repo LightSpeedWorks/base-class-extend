@@ -32,7 +32,7 @@ var BaseClass = require('base-class-extend');
 
 ## method: Class.extend(name, proto, classProps)
 
-  Define new class that inherited from Base Class.
+  Define new class (constructor function) that inherited from Base Class.
 
 ### Format
 
@@ -59,7 +59,7 @@ var YourSubClass = YourClass.extend([name], [proto], [classProps]);
 
 ### Returns
 
-  The newly defined class. (Your class is subclass of BaseClass)
+  The newly defined class (constructor function). (Your class is subclass of BaseClass)
 
 ### Details
 

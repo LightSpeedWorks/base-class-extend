@@ -31,7 +31,7 @@ var BaseClass = require('base-class-extend');
 
 ## メソッド: Class.extend(name, proto, classProps)
 
-  基底クラスを継承した新しいクラスを定義します。
+  基底クラスを継承した新しいクラス(コンストラクタ関数)を定義します。
 
 ### 形式
 
@@ -43,10 +43,10 @@ var YourSubClass = YourClass.extend([name], [proto], [classProps]);
 ### パラメータ
 
   + **BaseClass**: 継承のための基底クラスまたはスーパークラス
-  + **name**: 新しいクラスの文字列の名前 (省略可)
+  + **name**: 新しいクラス名の文字列 (省略可)
   + **proto**: 新しいクラスのプロトタイプオブジェクト (省略可)
     + **new**または**constructor**: コンストラクタ関数 (省略可)
-    + **get** getterまたは**set** setter: getter/setter,  (省略可)
+    + **get** getterまたは**set** setter: getter/setter (省略可)
     + **any methods**: メソッドまたはメンバー関数 (省略可)
   + **classProps**: クラス／静的プロパティのオブジェクト (省略可)
     + **init**または**initialize**: 初期化関数 (省略可)
@@ -58,7 +58,7 @@ var YourSubClass = YourClass.extend([name], [proto], [classProps]);
 
 ### 返り値
 
-  新しく定義されたクラス。(新しいクラスは基底クラスのサブクラス)
+  新しく定義されたクラス(コンストラクタ関数)。(新しいクラスは基底クラスのサブクラス)
 
 ### 詳細
 
@@ -109,7 +109,7 @@ var yourObj = YourClass();
 
 ### パラメータ
 
-  + **arguments**...: コンストラクタ関数にわたされる(省略可)
+  + **arguments**...: コンストラクタ関数に渡される引数 (省略可)
 
 ### 返り値
 
