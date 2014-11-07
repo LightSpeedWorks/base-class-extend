@@ -23,6 +23,11 @@ getter/setterをサポートします。
 $ npm install base-class-extend
 ```
 
+または
+```html
+<script src="http://lightspeedworks.github.io/base-class/lib/base-class.js"></script>
+```
+
 # 使い方:
 
 ```js

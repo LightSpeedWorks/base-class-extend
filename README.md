@@ -24,6 +24,11 @@ no `Object.defineProperty`, no `Object.setPrototypeOf`, etc ...
 $ npm install base-class-extend
 ```
 
+or
+```html
+<script src="http://lightspeedworks.github.io/base-class/lib/base-class.js"></script>
+```
+
 # USAGE:
 
 ```js
