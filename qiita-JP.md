@@ -726,11 +726,14 @@ Backboneのコード<br/>
 
 ### [ampersand-class-extend](https://www.npmjs.org/package/ampersand-class-extend) (npm)
 
+Backboneのコード<br/>
 `Class.extend(proto, proto2, proto3, ...);`<br/>
+mixin<br/>
 依存: extend-object
 
 ### [baseclass](https://www.npmjs.org/package/baseclass) (npm)
 
+Backboneのコード<br/>
 BaseClass.extend(proto, staticProps);<br/>
 constructor
 
