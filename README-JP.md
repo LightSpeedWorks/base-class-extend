@@ -15,6 +15,8 @@ getter/setterをサポートします。
 `constructor`も、`prototype`も、`__proto__`も、<br/>
 `Object.defineProperty`も、`Object.setPrototypeOf`も、等も不要です。
 
+関連記事: [[JavaScript] getter/setterも使えるエコ楽なクラス定義 - もちろん継承も - private変数も](http://qiita.com/LightSpeedC/items/3946088b58925234cc48) - qiita
+
 ![base-class.png](images/base-class.png)
 
 # インストール:
