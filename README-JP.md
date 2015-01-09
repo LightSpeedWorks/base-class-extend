@@ -55,12 +55,14 @@ var YourSubClass = YourClass.extend([name], [proto], [classProps]);
   + **BaseClass**: 継承のための基底クラスまたはスーパークラス
   + **name**: 新しいクラス名の文字列 (省略可)
   + **proto**: 新しいクラスのプロトタイプオブジェクト (省略可)
-    + **new**または**constructor**: コンストラクタ関数 (省略可)
-    + **get** getterまたは**set** setter: getter/setter (省略可)
+    + **new**, **ctor** または **constructor**: コンストラクタ関数 (省略可)
+    + **get** prop(): getter関数 (省略可)
+    + **set** prop(value): setter関数 (省略可)
     + **any methods**: メソッドまたはメンバー関数 (省略可)
   + **classProps**: クラス／静的プロパティのオブジェクト (省略可)
-    + **init**または**initialize**: 初期化関数 (省略可)
-    + **get** getterまたは**set** setter: getter/setter,  (省略可)
+    + **init**: 初期化関数 (省略可)
+    + **get** prop(): getter関数 (省略可)
+    + **set** prop(value): setter関数 (省略可)
     + **any methods**: 静的メソッドまたはクラス関数 (省略可)
 
   ※**proto**を省略した場合**classProps**も省略する必要がある<br/>

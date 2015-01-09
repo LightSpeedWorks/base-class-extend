@@ -29,7 +29,7 @@
   myObj.show();
   try {
     myObj.value++; // 6 -> 7 throws Error
-  } catch (e) { console.log(e.stack || (e + '')); }
+  } catch (e) { console.log(e + ''); }
 
   console.log();
   function mapName(elem) { return elem.name; }
