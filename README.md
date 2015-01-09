@@ -100,7 +100,7 @@ myObj.show();
 myObj.value++; // 6 -> 7 throws Error
 ```
 
-## method: Class.new(...)
+## method: Class.new(...) or Class.create(...)
 
   Create an object, instance of the Class.
 
@@ -109,6 +109,9 @@ myObj.value++; // 6 -> 7 throws Error
 ```js
 var YourClass = BaseClass.extend('YourClass');
 var yourObj = YourClass.new();
+
+// or
+var yourObj = YourClass.create();
 
 // or
 var yourObj = new YourClass();
@@ -208,7 +211,8 @@ this.private({
 ### Parameters
 
   + **proto**: the prototype object contains methods accessing private variables, required
-    + **get** getter or **set** setter: getter/setter, optional
+    + **get** prop(): getter function, optional
+    + **set** prop(value): setter function, optional
     + **any methods**: any method or member function, optional
 
 ### Returns

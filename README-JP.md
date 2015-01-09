@@ -101,7 +101,7 @@ myObj.show();
 myObj.value++; // 6 -> 7 throws Error
 ```
 
-## メソッド: Class.new(...)
+## メソッド: Class.new(...) または Class.create(...)
 
   クラスのインスタンスオブジェクトを作成する。
 
@@ -110,6 +110,9 @@ myObj.value++; // 6 -> 7 throws Error
 ```js
 var YourClass = BaseClass.extend('YourClass');
 var yourObj = YourClass.new();
+
+// または
+var yourObj = YourClass.create();
 
 // または
 var yourObj = new YourClass();
@@ -209,7 +212,8 @@ this.private({
 ### パラメータ
 
   + **proto**: プライベート変数にアクセスできるメソッドが含まれるプロトタイプオブジェクト (必須)
-    + **get** getterまたは**set** setter: getter/setter (省略可)
+    + **get** prop(): getter関数 (省略可)
+    + **set** prop(value): setter関数 (省略可)
     + **any methods**: メソッドまたはメンバー関数 (省略可)
 
 ### 返り値

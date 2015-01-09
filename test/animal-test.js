@@ -71,7 +71,7 @@
       console.log('Dog class method. (' + this.name + ')');
     }
   }); // -> Dog class init. (Dog)
-  var d1 = Dog.new('Hachi'); // Class method new call
+  var d1 = Dog.create('Hachi'); // Class method new call
   d1.introduce(); // -> My name is Hachi. I am a Dog.
   Dog.dogClassMethod(); // -> Animal class method. (Animal), Dog class method. (Dog)
   Dog.animalClassMethod(); // -> Animal class method. (Dog)

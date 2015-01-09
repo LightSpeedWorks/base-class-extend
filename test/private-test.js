@@ -27,6 +27,7 @@
   var p1 = new PrivateClass1(11);
   var p2 = PrivateClass1.new(12);
   var p3 = PrivateClass1(13);
+  var p4 = PrivateClass1.create(14);
   p1.showPrivate();
   console.log('p1.private1 = ' + p1.private1);
   console.log('p1.private2 = ' + p1.private2);
@@ -36,8 +37,11 @@
   p3.showPrivate();
   console.log('p3.private1 = ' + p3.private1);
   console.log('p3.private2 = ' + p3.private2);
+  p4.showPrivate();
+  console.log('p4.private1 = ' + p4.private1);
+  console.log('p4.private2 = ' + p4.private2);
 
-  checkConstructor(PrivateClass1, p1, p2, p3);
+  checkConstructor(PrivateClass1, p1, p2, p3, p4);
 
   function checkConstructor(ctor) {
     var objs = Array.prototype.slice.call(arguments, 1);
@@ -55,4 +59,5 @@
   console.log(p1.constructors.map(mapName).join(' < '));
   console.log(p2.constructors.map(mapName).join(' < '));
   console.log(p3.constructors.map(mapName).join(' < '));
+  console.log(p4.constructors.map(mapName).join(' < '));
   console.log(PrivateClass1.constructors.map(mapName).join(' < '));
