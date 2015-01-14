@@ -47,11 +47,11 @@
   var Cat = Animal.extend();
 
   var c1 = new Cat('Kitty');
-  c1.introduce(); // -> 私の名前はKittyです。私は$NoName$です。
+  c1.introduce(); // -> 私の名前はKittyです。私はです。
   var c2 = Cat('Kitty');
-  c2.introduce(); // -> 私の名前はKittyです。私は$NoName$です。
+  c2.introduce(); // -> 私の名前はKittyです。私はです。
   var c3 = Cat.new('Kitty');
-  c3.introduce(); // -> 私の名前はKittyです。私は$NoName$です。
+  c3.introduce(); // -> 私の名前はKittyです。私はです。
 
   var Dog = Animal.extend('Dog');
 
@@ -89,9 +89,9 @@
   assertNames(b1, 'b1', 'Pooh', 'Bear');
   assertNames(b2, 'b2', 'Pooh', 'Bear');
   assertNames(b3, 'b3', 'Pooh', 'Bear');
-  assertNames(c1, 'c1', 'Kitty', '$NoName$');
-  assertNames(c2, 'c2', 'Kitty', '$NoName$');
-  assertNames(c3, 'c3', 'Kitty', '$NoName$');
+  assertNames(c1, 'c1', 'Kitty', '');
+  assertNames(c2, 'c2', 'Kitty', '');
+  assertNames(c3, 'c3', 'Kitty', '');
   assertNames(d1, 'd1', 'Hachi', 'Dog');
   assertNames(d2, 'd2', 'Hachi', 'Dog');
   assertNames(d3, 'd3', 'Hachi', 'Dog');
