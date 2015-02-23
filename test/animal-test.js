@@ -2,9 +2,9 @@
   'use strict';
 
   try {
-    var BaseClass = require('../lib/base-class');
+    var BaseClass = require('../lib/base-class-extend');
   } catch (e) {
-    console.log('cant require "../lib/base-class": ' + e);
+    console.log('cant require "../lib/base-class-extend": ' + e);
     var BaseClass = require('base-class-extend');
   }
 

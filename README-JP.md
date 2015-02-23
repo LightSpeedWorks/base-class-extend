@@ -27,10 +27,10 @@ $ npm install base-class-extend
 
 または
 
-http://lightspeedworks.github.io/base-class/lib/base-class.js
+http://lightspeedworks.github.io/base-class-extend/lib/base-class-extend.js
 
 ```html
-<script src="http://lightspeedworks.github.io/base-class/lib/base-class.js"></script>
+<script src="http://lightspeedworks.github.io/base-class-extend/lib/base-class-extend.js"></script>
 ```
 
 # 使い方:

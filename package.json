@@ -1,11 +1,12 @@
 {
   "name": "base-class-extend",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Base Class constructor for easy class definition - supports getter/setter, inherit/extend Array Error or EventEmitter etc",
-  "main": "lib/base-class.js",
+  "main": "lib/base-class-extend.js",
   "keywords": [
     "Array",
     "base-class",
+    "base-class-extend",
     "class",
     "Error",
     "events",
@@ -13,13 +14,13 @@
     "extend",
     "inherits"
   ],
-  "homepage": "https://github.com/LightSpeedWorks/base-class",
+  "homepage": "https://github.com/LightSpeedWorks/base-class-extend",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LightSpeedWorks/base-class"
+    "url": "https://github.com/LightSpeedWorks/base-class-extend"
   },
   "bugs": {
-    "url": "https://github.com/LightSpeedWorks/base-class/issues"
+    "url": "https://github.com/LightSpeedWorks/base-class-extend/issues"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
