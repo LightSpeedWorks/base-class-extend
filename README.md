@@ -54,7 +54,7 @@ var YourSubClass = YourClass.extend([name], [proto], [classProps]);
   + **BaseClass**: Base class or Super class for inherits
   + **name**: string name of your class, optional
   + **proto**: the prototype object for your class, optional
-    + **new**, **ctor** or **constructor**: constructor function, optional
+    + **new** or **constructor**: constructor function, optional
     + **get** prop(): getter function, optional
     + **set** prop(value): setter function, optional
     + **any methods**: any method or member function, optional
