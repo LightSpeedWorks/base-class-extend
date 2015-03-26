@@ -237,59 +237,6 @@ var YourClass = BaseClass.extend({
 });
 ```
 
-## property: this.constructor
-
-  Get constructor function. (Class)
-
-### Format
-
-```js
-var MyClass = BaseClass.extend('MyClass');
-var o1 = new MyClass();
-console.log(o1.constructor === MyClass); // -> true
-```
-
-### Returns
-
-  The constructor function. (Class)
-
-## property: this.constructors
-
-  Get an array of constructor functions. (Classes)
-
-### Format
-
-```js
-var MyClass = BaseClass.extend('MyClass');
-var o1 = new MyClass();
-var classes = o1.constructors;
-console.log(classes[0] === MyClass);   // -> true
-console.log(classes[1] === BaseClass); // -> true
-console.log(classes[2] === Object);    // -> true
-```
-
-## Returns
-
-  An array of constructor functions. (Classes)
-
-## property: Class.constructors
-
-  Get an array of constructor functions.
-
-### Format
-
-```js
-var MyClass = BaseClass.extend('MyClass');
-var classes = MyClass.constructors;
-console.log(classes[0] === MyClass);   // -> true
-console.log(classes[1] === BaseClass); // -> true
-console.log(classes[2] === Object);    // -> true
-```
-
-## Returns
-
-  An array of constructor functions.
-
 # EXAMPLES:
 
 ```js
