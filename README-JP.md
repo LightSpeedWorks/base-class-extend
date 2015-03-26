@@ -191,6 +191,53 @@ var EventEmitter = require('events').EventEmitter;
 var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 ```
 
+## メソッド: this.addPrototype(proto)
+
+  プライベート変数または隠された変数を定義できます。<br/>
+  getter/setterやプライベート変数をアクセスできる通常のメソッドをサポートします。
+
+### 形式
+
+```js
+// 'new'メソッドまたは'constructor'関数の中に定義すること
+var private1;
+this.addPrototype({
+  method1: function method1() {
+    console.log(private1); },
+  get prop1() { return private1; },
+  set prop1(val) { private1 = val; },
+});
+```
+
+### パラメータ
+
+  + **proto**: プライベート変数にアクセスできるメソッドが含まれるプロトタイプオブジェクト (必須)
+    + **get** prop(): getter関数 (省略可)
+    + **set** prop(value): setter関数 (省略可)
+    + **any methods**: メソッドまたはメンバー関数 (省略可)
+
+### 返り値
+
+  渡したプロトタイプオブジェクト。
+
+### 詳細
+
+  サンプル:
+
+```js
+var YourClass = BaseClass.extend({
+  new: function YourClass() {
+    var private1 = 123; // getter/setter経由のアクセス
+    var private2 = 'abc'; // getter経由のアクセス, setter無し
+    this.addPrototype({
+      get private1() { return private1; }, // getter
+      set private1(val) { private1 = val; }, // setter
+      get private2() { return private2; }, // getter
+    });
+  },
+});
+```
+
 ## メソッド: this.private(proto)
 
   プライベート変数または隠された変数を定義できます。<br/>

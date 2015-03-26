@@ -190,6 +190,53 @@ var EventEmitter = require('events').EventEmitter;
 var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 ```
 
+## method: this.addPrototype(proto)
+
+  You can define private variables, hidden variables.<br/>
+  Also support getter/setter, and normal methods to access private variables.
+
+### Format
+
+```js
+// defined in 'new' method or 'constructor' function
+var private1;
+this.addPrototype({
+  method1: function method1() {
+    console.log(private1); },
+  get prop1() { return private1; },
+  set prop1(val) { private1 = val; },
+});
+```
+
+### Parameters
+
+  + **proto**: the prototype object contains methods accessing private variables, required
+    + **get** prop(): getter function, optional
+    + **set** prop(value): setter function, optional
+    + **any methods**: any method or member function, optional
+
+### Returns
+
+  The prototype object you passed.
+
+### Details
+
+  Sample:
+
+```js
+var YourClass = BaseClass.extend({
+  new: function YourClass() {
+    var private1 = 123; // access via getter/setter
+    var private2 = 'abc'; // access via getter, no setter
+    this.addPrototype({
+      get private1() { return private1; }, // getter
+      set private1(val) { private1 = val; }, // setter
+      get private2() { return private2; }, // getter
+    });
+  },
+});
+```
+
 ## method: this.private(proto)
 
   You can define private variables, hidden variables.<br/>
