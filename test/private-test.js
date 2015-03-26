@@ -1,6 +1,9 @@
 // private-test.js
   'use strict';
 
+  var constructors = require('get-constructors');
+  constructors.extendPrototype();
+
   try {
     var BaseClass = require('../lib/base-class-extend');
   } catch (e) {
@@ -56,8 +59,8 @@
 
   console.log();
   function mapName(elem) { return elem.name; }
-  console.log(p1.constructors.map(mapName).join(' < '));
-  console.log(p2.constructors.map(mapName).join(' < '));
-  console.log(p3.constructors.map(mapName).join(' < '));
-  console.log(p4.constructors.map(mapName).join(' < '));
-  console.log(PrivateClass1.constructors.map(mapName).join(' < '));
+  console.log('p1           ', p1.constructors.map(mapName).join(' < '));
+  console.log('p2           ', p2.constructors.map(mapName).join(' < '));
+  console.log('p3           ', p3.constructors.map(mapName).join(' < '));
+  console.log('p4           ', p4.constructors.map(mapName).join(' < '));
+  console.log('PrivateClass1', PrivateClass1.constructors.map(mapName).join(' < '));

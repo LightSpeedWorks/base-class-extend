@@ -1,6 +1,9 @@
 // object-test.js
   'use strict';
 
+  var constructors = require('get-constructors');
+  constructors.extendPrototype();
+
   try {
     var BaseClass = require('../lib/base-class-extend');
   } catch (e) {

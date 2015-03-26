@@ -1,6 +1,9 @@
 // vector-test.js
   'use strict';
 
+  var constructors = require('get-constructors');
+  constructors.extendPrototype();
+
   try {
     var BaseClass = require('../lib/base-class-extend');
   } catch (e) {
@@ -61,7 +64,7 @@
 
   console.log();
   function mapName(elem) { return elem.name; }
-  console.log(v2.constructors.map(mapName).join(' < '));
-  console.log(Vector2D.constructors.map(mapName).join(' < '));
-  console.log(v3.constructors.map(mapName).join(' < '));
-  console.log(Vector3D.constructors.map(mapName).join(' < '));
+  console.log('v2      ', v2.constructors.map(mapName).join(' < '));
+  console.log('Vector2D', Vector2D.constructors.map(mapName).join(' < '));
+  console.log('v3      ', v3.constructors.map(mapName).join(' < '));
+  console.log('Vector3D', Vector3D.constructors.map(mapName).join(' < '));

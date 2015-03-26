@@ -1,6 +1,9 @@
 // animal-test.js
   'use strict';
 
+  var constructors = require('get-constructors');
+  constructors.extendPrototype();
+
   try {
     var BaseClass = require('../lib/base-class-extend');
   } catch (e) {
@@ -78,16 +81,16 @@
 
   console.log();
   function mapName(elem) { return elem.name; }
-  console.log(a1.constructors.map(mapName).join(' < '));
-  console.log(Animal.constructors.map(mapName).join(' < '));
-  console.log(b1.constructors.map(mapName).join(' < '));
-  console.log(Bear.constructors.map(mapName).join(' < '));
-  console.log(c1.constructors.map(mapName).join(' < '));
-  console.log(Cat.constructors.map(mapName).join(' < '));
-  console.log(d1.constructors.map(mapName).join(' < '));
-  console.log(Dog.constructors.map(mapName).join(' < '));
+  console.log('a1    ', a1.constructors.map(mapName).join(' < '));
+  console.log('Animal', Animal.constructors.map(mapName).join(' < '));
+  console.log('b1    ', b1.constructors.map(mapName).join(' < '));
+  console.log('Bear  ', Bear.constructors.map(mapName).join(' < '));
+  console.log('c1    ', c1.constructors.map(mapName).join(' < '));
+  console.log('Cat   ', Cat.constructors.map(mapName).join(' < '));
+  console.log('d1    ', d1.constructors.map(mapName).join(' < '));
+  console.log('Dog   ', Dog.constructors.map(mapName).join(' < '));
 
   var Klass = BaseClass.extend.call(Object, 'Klass');
   var k1 = new Klass();
-  console.log(Klass.constructors.map(mapName).join(' < '));
-  console.log(k1.constructors.map(mapName).join(' < '));
+  console.log('k1    ', k1.constructors.map(mapName).join(' < '));
+  console.log('Klass ', Klass.constructors.map(mapName).join(' < '));

@@ -1,6 +1,9 @@
 // quick.js
   'use strict';
 
+  var constructors = require('get-constructors');
+  constructors.extendPrototype();
+
   try {
     var BaseClass = require('../lib/base-class-extend');
   } catch (e) {
@@ -33,5 +36,5 @@
 
   console.log();
   function mapName(elem) { return elem.name; }
-  console.log(myObj.constructors.map(mapName).join(' < '));
-  console.log(MyClass.constructors.map(mapName).join(' < '));
+  console.log('myObj  ', myObj.constructors.map(mapName).join(' < '));
+  console.log('MyClass', MyClass.constructors.map(mapName).join(' < '));
