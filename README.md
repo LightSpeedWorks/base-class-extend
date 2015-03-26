@@ -38,15 +38,15 @@ http://lightspeedworks.github.io/base-class-extend/lib/base-class-extend.js
 var BaseClass = require('base-class-extend');
 ```
 
-## method: Class.extend(name, proto, classProps)
+## method: Class.extend(name, proto, staticProps)
 
   Define new class (constructor function) that inherited from Base Class.
 
 ### Format
 
 ```js
-var YourClass = BaseClass.extend([name], [proto], [classProps]);
-var YourSubClass = YourClass.extend([name], [proto], [classProps]);
+var YourClass = BaseClass.extend([name], [proto], [staticProps]);
+var YourSubClass = YourClass.extend([name], [proto], [staticProps]);
 ```
 
 ### Parameters
@@ -58,14 +58,14 @@ var YourSubClass = YourClass.extend([name], [proto], [classProps]);
     + **get** prop(): getter function, optional
     + **set** prop(value): setter function, optional
     + **any methods**: any method or member function, optional
-  + **classProps**: the object for class or static properties, optional
+  + **staticProps**: the object for class or static properties, optional
     + **init**: initialize function, optional
     + **get** prop(): getter function, optional
     + **set** prop(value): setter function, optional
     + **any methods**: any static method or class function, optional
 
-  You have to omit **classProps** also, if you omit **proto**.<br/>
-  You have to specify **proto** or `{}`, if you want to specify **classProps**.
+  You have to omit **staticProps** also, if you omit **proto**.<br/>
+  You have to specify **proto** or `{}`, if you want to specify **staticProps**.
 
 ### Returns
 
@@ -365,6 +365,10 @@ var Vector3D = Vector2D.extend({
 var v3 = new Vector3D(3, 4, 5);
 console.log('V3D(3, 4, 5):', v3.length);
 ```
+
+# SEE ALSO:
+
+## [get-constructors](https://www.npmjs.org/package/get-constructors) - npm
 
 # LICENSE:
 

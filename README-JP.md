@@ -39,15 +39,15 @@ http://lightspeedworks.github.io/base-class-extend/lib/base-class-extend.js
 var BaseClass = require('base-class-extend');
 ```
 
-## メソッド: Class.extend(name, proto, classProps)
+## メソッド: Class.extend(name, proto, staticProps)
 
   基底クラスを継承した新しいクラス(コンストラクタ関数)を定義します。
 
 ### 形式
 
 ```js
-var YourClass = BaseClass.extend([name], [proto], [classProps]);
-var YourSubClass = YourClass.extend([name], [proto], [classProps]);
+var YourClass = BaseClass.extend([name], [proto], [staticProps]);
+var YourSubClass = YourClass.extend([name], [proto], [staticProps]);
 ```
 
 ### パラメータ
@@ -59,14 +59,14 @@ var YourSubClass = YourClass.extend([name], [proto], [classProps]);
     + **get** prop(): getter関数 (省略可)
     + **set** prop(value): setter関数 (省略可)
     + **any methods**: メソッドまたはメンバー関数 (省略可)
-  + **classProps**: クラス／静的プロパティのオブジェクト (省略可)
+  + **staticProps**: クラス／静的プロパティのオブジェクト (省略可)
     + **init**: 初期化関数 (省略可)
     + **get** prop(): getter関数 (省略可)
     + **set** prop(value): setter関数 (省略可)
     + **any methods**: 静的メソッドまたはクラス関数 (省略可)
 
-  ※**proto**を省略した場合**classProps**も省略する必要がある<br/>
-  ※**classProps**を指定したい場合、省略したい**proto**の部分は`{}`と指定すると良い
+  ※**proto**を省略した場合**staticProps**も省略する必要がある<br/>
+  ※**staticProps**を指定したい場合、省略したい**proto**の部分は`{}`と指定すると良い
 
 ### 返り値
 
@@ -366,6 +366,10 @@ var Vector3D = Vector2D.extend({
 var v3 = new Vector3D(3, 4, 5);
 console.log('V3D(3, 4, 5):', v3.length);
 ```
+
+# 参考:
+
+## [get-constructors](https://www.npmjs.org/package/get-constructors) - npm
 
 # ライセンス:
 
