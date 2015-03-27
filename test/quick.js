@@ -35,6 +35,6 @@
   } catch (e) { console.log(e + ''); }
 
   console.log();
-  function mapName(elem) { return elem.name; }
-  console.log('myObj  ', myObj.constructors.map(mapName).join(' < '));
-  console.log('MyClass', MyClass.constructors.map(mapName).join(' < '));
+  function nm(elem) { return elem.name; }
+  console.log(MyClass.constructors.map(nm).join(' < '), ': MyClass');
+  console.log(myObj.constructors.map(nm).join(' < '), ': myObj');

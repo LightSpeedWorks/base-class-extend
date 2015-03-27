@@ -16,10 +16,10 @@ var k1 = new Klass();
 var k2 = Klass.new();
 var k3 = Klass();
 var k4 = Klass.create();
-function mapName(e) { return e.name; }
-pr(Klass.constructors.map(mapName).join(' < '), ': Klass');
-pr(k1.constructors.map(mapName).join(' < '), ': k1');
-pr(k2.constructors.map(mapName).join(' < '), ': k2');
-pr(k3.constructors.map(mapName).join(' < '), ': k3');
-pr(k4.constructors.map(mapName).join(' < '), ': k4');
+function nm(e) { return e.name; }
+pr(Klass.constructors.map(nm).join(' < '), ': Klass');
+pr(k1   .constructors.map(nm).join(' < '), ': k1');
+pr(k2   .constructors.map(nm).join(' < '), ': k2');
+pr(k3   .constructors.map(nm).join(' < '), ': k3');
+pr(k4   .constructors.map(nm).join(' < '), ': k4');
 </script>

@@ -80,17 +80,17 @@
   Dog.animalClassMethod(); // -> Animal class method. (Dog)
 
   console.log();
-  function mapName(elem) { return elem.name; }
-  console.log('a1    ', a1.constructors.map(mapName).join(' < '));
-  console.log('Animal', Animal.constructors.map(mapName).join(' < '));
-  console.log('b1    ', b1.constructors.map(mapName).join(' < '));
-  console.log('Bear  ', Bear.constructors.map(mapName).join(' < '));
-  console.log('c1    ', c1.constructors.map(mapName).join(' < '));
-  console.log('Cat   ', Cat.constructors.map(mapName).join(' < '));
-  console.log('d1    ', d1.constructors.map(mapName).join(' < '));
-  console.log('Dog   ', Dog.constructors.map(mapName).join(' < '));
+  function nm(elem) { return elem.name; }
+  console.log(Animal.constructors.map(nm).join(' < '), ': Animal');
+  console.log(a1    .constructors.map(nm).join(' < '), ': a1');
+  console.log(Bear  .constructors.map(nm).join(' < '), ': Bear');
+  console.log(b1    .constructors.map(nm).join(' < '), ': b1');
+  console.log(Cat   .constructors.map(nm).join(' < '), ': Cat');
+  console.log(c1    .constructors.map(nm).join(' < '), ': c1');
+  console.log(Dog   .constructors.map(nm).join(' < '), ': Dog');
+  console.log(d1    .constructors.map(nm).join(' < '), ': d1');
 
   var Klass = BaseClass.extend.call(Object, 'Klass');
   var k1 = new Klass();
-  console.log('k1    ', k1.constructors.map(mapName).join(' < '));
-  console.log('Klass ', Klass.constructors.map(mapName).join(' < '));
+  console.log(Klass .constructors.map(nm).join(' < '), ': Klass');
+  console.log(k1    .constructors.map(nm).join(' < '), ': k1');

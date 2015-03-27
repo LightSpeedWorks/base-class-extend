@@ -74,8 +74,8 @@
   console.log('V3D(3, 4, 5):', v3.length);
 
   console.log();
-  function mapName(elem) { return elem.name; }
-  console.log('v2      ', v2.constructors.map(mapName).join(' < '));
-  console.log('Vector2D', Vector2D.constructors.map(mapName).join(' < '));
-  console.log('v3      ', v3.constructors.map(mapName).join(' < '));
-  console.log('Vector3D', Vector3D.constructors.map(mapName).join(' < '));
+  function nm(elem) { return elem.name; }
+  console.log(Vector2D.constructors.map(nm).join(' < '), ': Vector2D');
+  console.log(v2      .constructors.map(nm).join(' < '), ': v2');
+  console.log(Vector3D.constructors.map(nm).join(' < '), ': Vector3D');
+  console.log(v3      .constructors.map(nm).join(' < '), ': v3');
