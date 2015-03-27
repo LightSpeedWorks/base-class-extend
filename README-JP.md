@@ -135,7 +135,10 @@ var yourObj = YourClass();
 ### Objectクラスからの継承
 
 ```js
-Object.extend = BaseClass.extend;
+var BaseClass = require('base-class-extend').extendPrototype(Object);
+//  or
+// Object.extend = BaseClass.extend;
+
 var SimpleClass = Object.extend('SimpleClass');
 
 // または単純に
@@ -145,7 +148,10 @@ var SimpleClass = BaseClass.extend.call(Object, 'SimpleClass');
 ### Arrayクラスからの継承
 
 ```js
-Array.extend = BaseClass.extend;
+var BaseClass = require('base-class-extend').extendPrototype(Array);
+//  or
+// Array.extend = BaseClass.extend;
+
 var CustomArray = Array.extend('CustomArray');
 
 // または単純に
@@ -158,7 +164,10 @@ var ca = new CustomArray(1, 2, 3);
 ### Errorクラスからの継承
 
 ```js
-Error.extend = BaseClass.extend;
+var BaseClass = require('base-class-extend').extendPrototype(Error);
+//  or
+// Error.extend = BaseClass.extend;
+
 var CustomError = Error.extend('CustomError');
 
 // または単純に
@@ -171,7 +180,11 @@ var ce = new CustomError('message');
 
 ```js
 var EventEmitter = require('events').EventEmitter;
-EventEmitter.extend = BaseClass.extend;
+
+var BaseClass = require('base-class-extend').extendPrototype(EventEmitter);
+//  or
+// EventEmitter.extend = BaseClass.extend;
+
 var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 
 // または単純に
@@ -181,7 +194,9 @@ var CustomEventEmitter = BaseClass.extend.call(EventEmitter, 'CustomEventEmitter
 ### 他の全てのクラスつまりコンストラクタ関数からの継承 ... Function
 
 ```js
-Function.prototype.extend = BaseClass.extend;
+var BaseClass = require('base-class-extend').extendPrototype();
+//  or
+// Function.prototype.extend = BaseClass.extend;
 
 var SimpleClass = Object.extend('SimpleClass');
 var CustomArray = Array.extend('CustomArray');
@@ -200,13 +215,17 @@ var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 
 ```js
 // 'new'メソッドまたは'constructor'関数の中に定義すること
-var private1;
-this.addPrototype({
-  method1: function method1() {
-    console.log(private1); },
-  get prop1() { return private1; },
-  set prop1(val) { private1 = val; },
-});
+{
+  constructor: function () {
+    var private1;
+    this.addPrototype({
+      method1: function method1() {
+        console.log(private1); },
+      get prop1() { return private1; },
+      set prop1(val) { private1 = val; },
+    });
+  }
+}
 ```
 
 ### パラメータ
@@ -247,13 +266,17 @@ var YourClass = BaseClass.extend({
 
 ```js
 // 'new'メソッドまたは'constructor'関数の中に定義すること
-var private1;
-this.private({
-  method1: function method1() {
-    console.log(private1); },
-  get prop1() { return private1; },
-  set prop1(val) { private1 = val; },
-});
+{
+  constructor: function () {
+    var private1;
+    this.private({
+      method1: function method1() {
+        console.log(private1); },
+      get prop1() { return private1; },
+      set prop1(val) { private1 = val; },
+    });
+  }
+}
 ```
 
 ### パラメータ

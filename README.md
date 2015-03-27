@@ -134,7 +134,10 @@ var yourObj = YourClass();
 ### inherits from Object class
 
 ```js
-Object.extend = BaseClass.extend;
+var BaseClass = require('base-class-extend').extendPrototype(Object);
+//  or
+// Object.extend = BaseClass.extend;
+
 var SimpleClass = Object.extend('SimpleClass');
 
 // or simply
@@ -144,7 +147,10 @@ var SimpleClass = BaseClass.extend.call(Object, 'SimpleClass');
 ### inherits from Array class
 
 ```js
-Array.extend = BaseClass.extend;
+var BaseClass = require('base-class-extend').extendPrototype(Array);
+//  or
+// Array.extend = BaseClass.extend;
+
 var CustomArray = Array.extend('CustomArray');
 
 // or simply
@@ -157,7 +163,10 @@ var ca = new CustomArray(1, 2, 3);
 ### inherits from Error class
 
 ```js
-Error.extend = BaseClass.extend;
+var BaseClass = require('base-class-extend').extendPrototype(Error);
+//  or
+// Error.extend = BaseClass.extend;
+
 var CustomError = Error.extend('CustomError');
 
 // or simply
@@ -170,7 +179,11 @@ var ce = new CustomError('message');
 
 ```js
 var EventEmitter = require('events').EventEmitter;
-EventEmitter.extend = BaseClass.extend;
+
+var BaseClass = require('base-class-extend').extendPrototype(EventEmitter);
+//  or
+// EventEmitter.extend = BaseClass.extend;
+
 var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 
 // or simply
@@ -180,7 +193,9 @@ var CustomEventEmitter = BaseClass.extend.call(EventEmitter, 'CustomEventEmitter
 ### inherits from all other class or constructor ... Function
 
 ```js
-Function.prototype.extend = BaseClass.extend;
+var BaseClass = require('base-class-extend').extendPrototype();
+//  or
+// Function.prototype.extend = BaseClass.extend;
 
 var SimpleClass = Object.extend('SimpleClass');
 var CustomArray = Array.extend('CustomArray');
@@ -199,13 +214,17 @@ var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 
 ```js
 // defined in 'new' method or 'constructor' function
-var private1;
-this.addPrototype({
-  method1: function method1() {
-    console.log(private1); },
-  get prop1() { return private1; },
-  set prop1(val) { private1 = val; },
-});
+{
+  constructor: function () {
+    var private1;
+    this.addPrototype({
+      method1: function method1() {
+        console.log(private1); },
+      get prop1() { return private1; },
+      set prop1(val) { private1 = val; },
+    });
+  }
+}
 ```
 
 ### Parameters
@@ -246,13 +265,17 @@ var YourClass = BaseClass.extend({
 
 ```js
 // defined in 'new' method or 'constructor' function
-var private1;
-this.private({
-  method1: function method1() {
-    console.log(private1); },
-  get prop1() { return private1; },
-  set prop1(val) { private1 = val; },
-});
+{
+  constructor: function () {
+    var private1;
+    this.private({
+      method1: function method1() {
+        console.log(private1); },
+      get prop1() { return private1; },
+      set prop1(val) { private1 = val; },
+    });
+  }
+}
 ```
 
 ### Parameters
