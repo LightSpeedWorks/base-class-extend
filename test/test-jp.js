@@ -66,7 +66,7 @@
   d3.introduce(); // -> 私の名前はHachiです。私はDogです。
 
   var Elephant = Animal.extend('Elephant', {
-    new: function () {
+    new: function (name) {
       if (!(this instanceof Elephant))
         return new Elephant(name);
       Elephant.super_.apply(this, arguments);

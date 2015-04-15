@@ -69,7 +69,7 @@
   d3.introduce(); // -> My name is Hachi. I am a Dog.
 
   var Elephant = Animal.extend('Elephant', {
-    new: function () {
+    new: function (name) {
       if (!(this instanceof Elephant))
         return new Elephant(name);
       Elephant.super_.apply(this, arguments);
