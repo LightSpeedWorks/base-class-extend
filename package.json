@@ -4,7 +4,7 @@
   "description": "Base Class constructor for easy class definition - supports getter/setter, inherit/extend Array Error or EventEmitter etc",
   "main": "lib/base-class-extend.js",
   "devDependencies": {
-    "get-constructors": ">=0.0.4"
+    "get-constructors": ">=0.0.5"
   },
   "keywords": [
     "Array",
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/LightSpeedWorks/base-class-extend",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LightSpeedWorks/base-class-extend"
+    "url": "LightSpeedWorks/base-class-extend"
   },
   "bugs": {
     "url": "https://github.com/LightSpeedWorks/base-class-extend/issues"
