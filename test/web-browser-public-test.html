@@ -15,14 +15,6 @@
 
 <script>
 (function () {
-  // console.log redefine for web browser test.
-  var logOrg = console.log;
-  console.log = function logNew() {
-    logOrg.apply(console, arguments);
-    document.writeln([].slice.call(arguments).join(' ') + '<br/>');
-  };
-  console.log('new console.log has defined for web browser test.');
-
   // Array.prototype.map for ie8
   if (!Array.prototype.hasOwnProperty('map'))
     Array.prototype.map = function map(fn, ctx) {
@@ -31,6 +23,14 @@
         res[i] = fn.call(ctx, this[i], i, this);
       return res;
     };
+
+  // console.log redefine for web browser test.
+  var logOrg = console.log;
+  console.log = function logNew() {
+    logOrg.apply(console, arguments);
+    document.writeln([].slice.call(arguments).join(' ') + '<br/>');
+  };
+  console.log('new console.log has defined for web browser test.');
 
   var rex = /^[AIUEO]/i;
   function a(s) { return rex.exec(s) ? 'an ' + s : 'a ' + s; }
