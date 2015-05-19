@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, Chrome=1">
+<meta http-equiv="Content-Language" content="ja">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
 <!--script src="http://lightspeedworks.github.io/get-constructors/get-constructors.js"></script-->
 <script src="../node_modules/get-constructors/get-constructors.js"></script>
 <!--script src="http://lightspeedworks.github.io/base-class-extend/lib/base-class-extend.js"></script-->
@@ -13,7 +23,14 @@
   };
   console.log('new console.log has defined for web browser test.');
 
-  constructors.extendPrototype();
+  // Array.prototype.map for ie8
+  if (!Array.prototype.hasOwnProperty('map'))
+    Array.prototype.map = function map(fn, ctx) {
+      var n = this.length, res = new Array(n);
+      for (var i = 0; i < n; ++i)
+        res[i] = fn.call(ctx, this[i], i, this);
+      return res;
+    };
 
   var rex = /^[AIUEO]/i;
   function a(s) { return rex.exec(s) ? 'an ' + s : 'a ' + s; }
@@ -21,7 +38,7 @@
   console.log();
   console.log('BaseClass.extend defines Animal class.');
   var Animal = BaseClass.extend({
-    new: function Animal(name) {
+    constructor: function Animal(name) {
       this.name = name;
     },
     introduce: function introduce() {
@@ -29,14 +46,14 @@
                   'I am ' + a(this.constructor.name) + '.');
       console.log('私の名前は' + this.name + 'です。' +
                   '私は' + this.constructor.name + 'です。');
-    },
+    }
   });
 
   console.log('Animal creates instance.');
   var a1 = new Animal('Annie');
   a1.introduce();
-  console.log(Animal.constructors.map(nm).join(' < '), ': Animal');
-  console.log(a1    .constructors.map(nm).join(' < '), ': a1');
+  console.log(constructors(Animal).map(nm).join(' < '), ': Animal');
+  console.log(constructors(a1    ).map(nm).join(' < '), ': a1');
 
 
   console.log();
@@ -46,8 +63,8 @@
   console.log('Bear creates instance.');
   var b1 = Bear('Pooh');
   b1.introduce();
-  console.log(Bear.constructors.map(nm).join(' < '), ': Bear');
-  console.log(b1  .constructors.map(nm).join(' < '), ': b1');
+  console.log(constructors(Bear).map(nm).join(' < '), ': Bear');
+  console.log(constructors(b1  ).map(nm).join(' < '), ': b1');
 
 
   console.log();
@@ -56,13 +73,17 @@
 
   console.log('Klass creates instances.');
   var k1 = new Klass();
-  var k2 = Klass.new();
+  var k2 = Klass.create();
+  var k2 = Klass['new']();
   var k3 = Klass();
-  console.log(Klass.constructors.map(nm).join(' < '), ': Klass');
-  console.log(k1   .constructors.map(nm).join(' < '), ': k1');
-  console.log(k2   .constructors.map(nm).join(' < '), ': k2');
-  console.log(k3   .constructors.map(nm).join(' < '), ': k3');
+  console.log(constructors(Klass).map(nm).join(' < '), ': Klass');
+  console.log(constructors(k1   ).map(nm).join(' < '), ': k1');
+  console.log(constructors(k2   ).map(nm).join(' < '), ': k2');
+  console.log(constructors(k3   ).map(nm).join(' < '), ': k3');
 
   function nm(e) { return e.name; }
 })();
 </script>
+
+</body>
+</html>

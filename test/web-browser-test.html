@@ -1,10 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, Chrome=1">
+<meta http-equiv="Content-Language" content="ja">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
 <!--script src="http://lightspeedworks.github.io/get-constructors/get-constructors.js"></script-->
 <script src="../node_modules/get-constructors/get-constructors.js"></script>
 <!--script src="http://lightspeedworks.github.io/base-class-extend/lib/base-class-extend.js"></script-->
 <script src="../lib/base-class-extend.js"></script>
 
 <script>
-constructors.extendPrototype();
+// Array.prototype.map for ie8
+if (!Array.prototype.hasOwnProperty('map'))
+  Array.prototype.map = function map(fn, ctx) {
+    var n = this.length, res = new Array(n);
+    for (var i = 0; i < n; ++i)
+      res[i] = fn.call(ctx, this[i], i, this);
+    return res;
+  };
 
 function pr() {
   var msg = [].slice.call(arguments).join(' ');
@@ -14,13 +31,19 @@ function pr() {
 }
 var Klass = BaseClass.extend('Klass');
 var k1 = new Klass();
-var k2 = Klass.new();
+var k2 = Klass.create();
+var k2 = Klass['new']();
 var k3 = Klass();
 var k4 = Klass.create();
 function nm(e) { return e.name; }
-pr(Klass.constructors.map(nm).join(' < '), ': Klass');
-pr(k1   .constructors.map(nm).join(' < '), ': k1');
-pr(k2   .constructors.map(nm).join(' < '), ': k2');
-pr(k3   .constructors.map(nm).join(' < '), ': k3');
-pr(k4   .constructors.map(nm).join(' < '), ': k4');
+pr([1,2,3].map(function (x) {return x}));
+pr([1,2,3].map(function (x) {return x}).join(', '));
+pr(constructors(Klass).map(nm).join(' < '), ': Klass');
+pr(constructors(k1   ).map(nm).join(' < '), ': k1');
+pr(constructors(k2   ).map(nm).join(' < '), ': k2');
+pr(constructors(k3   ).map(nm).join(' < '), ': k3');
+pr(constructors(k4   ).map(nm).join(' < '), ': k4');
 </script>
+
+</body>
+</html>
