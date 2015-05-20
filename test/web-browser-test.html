@@ -14,7 +14,7 @@
 <script src="../lib/base-class-extend.js"></script>
 
 <script>
-(function () {
+(function (constructors, Base) {
   'use strict';
 
   // Array.prototype.map for ie8
@@ -34,15 +34,13 @@
       document.write(msg + '<br/>');
   }
 
-  var Klass = BaseClass.extend('Klass');
+  var Klass = Base.extend('Klass');
   var k1 = new Klass();
   var k2 = Klass.create();
   var k2 = Klass['new']();
   var k3 = Klass();
   var k4 = Klass.create();
 
-  pr([1,2,3].map(function (x) {return x}));
-  pr([1,2,3].map(function (x) {return x}).join(', '));
   pr(constructors(Klass).map(nm).join(' < '), ': Klass');
   pr(constructors(k1   ).map(nm).join(' < '), ': k1');
   pr(constructors(k2   ).map(nm).join(' < '), ': k2');
@@ -50,7 +48,8 @@
   pr(constructors(k4   ).map(nm).join(' < '), ': k4');
 
   function nm(e) { return e.name; }
-})();
+
+})(constructors, BaseClass);
 </script>
 
 </body>

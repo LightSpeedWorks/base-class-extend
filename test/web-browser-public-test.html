@@ -14,7 +14,7 @@
 <script src="../lib/base-class-extend.js"></script>
 
 <script>
-(function () {
+(function (constructors, Base) {
   'use strict';
 
   // Array.prototype.map for ie8
@@ -40,8 +40,8 @@
   function a(s) { return rex.exec(s) ? 'an ' + s : 'a ' + s; }
 
   pr();
-  pr('BaseClass.extend defines Animal class.');
-  var Animal = BaseClass.extend('Animal', {
+  pr('Base.extend defines Animal class.');
+  var Animal = Base.extend('Animal', {
     constructor: function Animal(name) {
       this.name = name;
     },
@@ -72,8 +72,8 @@
 
 
   pr();
-  pr('BaseClass.extend defines Klass class.');
-  var Klass = BaseClass.extend('Klass');
+  pr('Base.extend defines Klass class.');
+  var Klass = Base.extend('Klass');
 
   pr('Klass creates instances.');
   var k1 = new Klass();
@@ -86,7 +86,8 @@
   pr(constructors(k3   ).map(nm).join(' < '), ': k3');
 
   function nm(e) { return e.name; }
-})();
+
+})(constructors, BaseClass);
 </script>
 
 </body>
