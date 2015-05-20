@@ -14,35 +14,43 @@
 <script src="../lib/base-class-extend.js"></script>
 
 <script>
-// Array.prototype.map for ie8
-if (!Array.prototype.hasOwnProperty('map'))
-  Array.prototype.map = function map(fn, ctx) {
-    var n = this.length, res = new Array(n);
-    for (var i = 0; i < n; ++i)
-      res[i] = fn.call(ctx, this[i], i, this);
-    return res;
-  };
+(function () {
+  'use strict';
 
-function pr() {
-  var msg = [].slice.call(arguments).join(' ');
-  console.log(msg);
-  if (typeof document !== 'undefined')
-    document.write(msg + '<br/>');
-}
-var Klass = BaseClass.extend('Klass');
-var k1 = new Klass();
-var k2 = Klass.create();
-var k2 = Klass['new']();
-var k3 = Klass();
-var k4 = Klass.create();
-function nm(e) { return e.name; }
-pr([1,2,3].map(function (x) {return x}));
-pr([1,2,3].map(function (x) {return x}).join(', '));
-pr(constructors(Klass).map(nm).join(' < '), ': Klass');
-pr(constructors(k1   ).map(nm).join(' < '), ': k1');
-pr(constructors(k2   ).map(nm).join(' < '), ': k2');
-pr(constructors(k3   ).map(nm).join(' < '), ': k3');
-pr(constructors(k4   ).map(nm).join(' < '), ': k4');
+  // Array.prototype.map for ie8
+  if (!Array.prototype.hasOwnProperty('map'))
+    Array.prototype.map = function map(fn, ctx) {
+      var n = this.length, res = new Array(n);
+      for (var i = 0; i < n; ++i)
+        res[i] = fn.call(ctx, this[i], i, this);
+      return res;
+    };
+
+  function pr() {
+    var msg = [].slice.call(arguments).join(' ');
+    if (typeof console !== 'undefined')
+      console.log(msg);
+    if (typeof document !== 'undefined')
+      document.write(msg + '<br/>');
+  }
+
+  var Klass = BaseClass.extend('Klass');
+  var k1 = new Klass();
+  var k2 = Klass.create();
+  var k2 = Klass['new']();
+  var k3 = Klass();
+  var k4 = Klass.create();
+
+  pr([1,2,3].map(function (x) {return x}));
+  pr([1,2,3].map(function (x) {return x}).join(', '));
+  pr(constructors(Klass).map(nm).join(' < '), ': Klass');
+  pr(constructors(k1   ).map(nm).join(' < '), ': k1');
+  pr(constructors(k2   ).map(nm).join(' < '), ': k2');
+  pr(constructors(k3   ).map(nm).join(' < '), ': k3');
+  pr(constructors(k4   ).map(nm).join(' < '), ': k4');
+
+  function nm(e) { return e.name; }
+})();
 </script>
 
 </body>

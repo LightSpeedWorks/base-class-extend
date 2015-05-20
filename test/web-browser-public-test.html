@@ -15,6 +15,8 @@
 
 <script>
 (function () {
+  'use strict';
+
   // Array.prototype.map for ie8
   if (!Array.prototype.hasOwnProperty('map'))
     Array.prototype.map = function map(fn, ctx) {
@@ -24,62 +26,64 @@
       return res;
     };
 
-  // console.log redefine for web browser test.
-  var logOrg = console.log;
-  console.log = function logNew() {
-    logOrg.apply(console, arguments);
-    document.writeln([].slice.call(arguments).join(' ') + '<br/>');
-  };
-  console.log('new console.log has defined for web browser test.');
+  function pr() {
+    var msg = [].slice.call(arguments).join(' ');
+    if (typeof console !== 'undefined')
+      console.log(msg);
+    if (typeof document !== 'undefined')
+      document.write(msg + '<br/>');
+  }
+
+  pr('new pr has defined for web browser test.');
 
   var rex = /^[AIUEO]/i;
   function a(s) { return rex.exec(s) ? 'an ' + s : 'a ' + s; }
 
-  console.log();
-  console.log('BaseClass.extend defines Animal class.');
-  var Animal = BaseClass.extend({
+  pr();
+  pr('BaseClass.extend defines Animal class.');
+  var Animal = BaseClass.extend('Animal', {
     constructor: function Animal(name) {
       this.name = name;
     },
     introduce: function introduce() {
-      console.log('My name is ' + this.name + '. ' +
-                  'I am ' + a(this.constructor.name) + '.');
-      console.log('私の名前は' + this.name + 'です。' +
-                  '私は' + this.constructor.name + 'です。');
+      pr('My name is ' + this.name + '. ' +
+         'I am ' + a(this.constructor.name) + '.');
+      pr('私の名前は' + this.name + 'です。' +
+         '私は' + this.constructor.name + 'です。');
     }
   });
 
-  console.log('Animal creates instance.');
+  pr('Animal creates instance.');
   var a1 = new Animal('Annie');
   a1.introduce();
-  console.log(constructors(Animal).map(nm).join(' < '), ': Animal');
-  console.log(constructors(a1    ).map(nm).join(' < '), ': a1');
+  pr(constructors(Animal).map(nm).join(' < '), ': Animal');
+  pr(constructors(a1    ).map(nm).join(' < '), ': a1');
 
 
-  console.log();
-  console.log('Animal.extend defines Bear class.');
+  pr();
+  pr('Animal.extend defines Bear class.');
   var Bear = Animal.extend('Bear');
 
-  console.log('Bear creates instance.');
+  pr('Bear creates instance.');
   var b1 = Bear('Pooh');
   b1.introduce();
-  console.log(constructors(Bear).map(nm).join(' < '), ': Bear');
-  console.log(constructors(b1  ).map(nm).join(' < '), ': b1');
+  pr(constructors(Bear).map(nm).join(' < '), ': Bear');
+  pr(constructors(b1  ).map(nm).join(' < '), ': b1');
 
 
-  console.log();
-  console.log('BaseClass.extend defines Klass class.');
+  pr();
+  pr('BaseClass.extend defines Klass class.');
   var Klass = BaseClass.extend('Klass');
 
-  console.log('Klass creates instances.');
+  pr('Klass creates instances.');
   var k1 = new Klass();
   var k2 = Klass.create();
   var k2 = Klass['new']();
   var k3 = Klass();
-  console.log(constructors(Klass).map(nm).join(' < '), ': Klass');
-  console.log(constructors(k1   ).map(nm).join(' < '), ': k1');
-  console.log(constructors(k2   ).map(nm).join(' < '), ': k2');
-  console.log(constructors(k3   ).map(nm).join(' < '), ': k3');
+  pr(constructors(Klass).map(nm).join(' < '), ': Klass');
+  pr(constructors(k1   ).map(nm).join(' < '), ': k1');
+  pr(constructors(k2   ).map(nm).join(' < '), ': k2');
+  pr(constructors(k3   ).map(nm).join(' < '), ': k3');
 
   function nm(e) { return e.name; }
 })();
