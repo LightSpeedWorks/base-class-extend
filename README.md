@@ -14,6 +14,8 @@ no difficult keywords,<br/>
 no `constructor`, no `prototype`, no `__proto__`,<br/>
 no `Object.defineProperty`, no `Object.setPrototypeOf`, etc ...
 
+Supports Chrome, Firefox, ie11/9/8/6 and Node.js/io.js.
+
 [Japanese version/■日本語版はこちら■](README-JP.md#readme)
 
 ![base-class.png](images/base-class.png)
