@@ -85,7 +85,15 @@
   pr(constructors(k2   ).map(nm).join(' < '), ': k2');
   pr(constructors(k3   ).map(nm).join(' < '), ': k3');
 
-  function nm(e) { return e.name; }
+  pr();
+  pr('end of test');
+
+  // nm(x)
+  function nm(x) {
+    var name = (x.hasOwnProperty && x.hasOwnProperty('name')) ?
+        (x.name || 'undefined') : (x.name || 'undefined') + '(default)';
+    return name;
+  }
 
 })(constructors, BaseClass);
 </script>

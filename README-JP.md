@@ -15,7 +15,7 @@ getter/setterをサポートします。
 `constructor`も、`prototype`も、`__proto__`も、<br/>
 `Object.defineProperty`も、`Object.setPrototypeOf`も、等も不要です。
 
-Chrome, Firefox, ie11/9/8/6 と Node.js/io.js をサポートします。
+Google Chrome, Mozilla Firefox, Microsoft ie11/10/9/8/7/6 と Node.js/io.js をサポートします。
 
 関連記事: [[JavaScript] getter/setterも使えるエコ楽なクラス定義 - もちろん継承も - private変数も](http://qiita.com/LightSpeedC/items/3946088b58925234cc48) - qiita
 
