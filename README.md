@@ -56,7 +56,7 @@ var YourSubClass = YourClass.extend([name], [proto], [staticProps]);
   + **BaseClass**: Base class or Super class for inherits
   + **name**: string name of your class, optional
   + **proto**: the prototype object for your class, optional
-    + **new** or **constructor**: constructor function, optional
+    + **constructor** or **new**: constructor function, optional
     + **get** prop(): getter function, optional
     + **set** prop(value): setter function, optional
     + **any methods**: any method or member function, optional
@@ -81,7 +81,7 @@ var YourSubClass = YourClass.extend([name], [proto], [staticProps]);
 var BaseClass = require('base-class-extend');
 
 var MyClass = BaseClass.extend({
-  new: function MyClass(value) {
+  constructor: function MyClass(value) {
     this.value = value; // via setter
   },
   show: function show() {
@@ -102,7 +102,7 @@ myObj.show();
 myObj.value++; // 6 -> 7 throws Error
 ```
 
-## method: Class.new(...) or Class.create(...)
+## method: Class.create(...) or Class.new(...)
 
   Create an object, instance of the Class.
 
@@ -110,10 +110,10 @@ myObj.value++; // 6 -> 7 throws Error
 
 ```js
 var YourClass = BaseClass.extend('YourClass');
-var yourObj = YourClass.new();
+var yourObj = YourClass.create();
 
 // or
-var yourObj = YourClass.create();
+var yourObj = YourClass.new();
 
 // or
 var yourObj = new YourClass();
@@ -215,7 +215,7 @@ var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 ### Format
 
 ```js
-// defined in 'new' method or 'constructor' function
+// defined in 'constructor' method or 'new' function
 {
   constructor: function () {
     var private1;
@@ -246,7 +246,7 @@ var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 
 ```js
 var YourClass = BaseClass.extend({
-  new: function YourClass() {
+  constructor: function YourClass() {
     var private1 = 123; // access via getter/setter
     var private2 = 'abc'; // access via getter, no setter
     this.addPrototype({
@@ -266,7 +266,7 @@ var YourClass = BaseClass.extend({
 ### Format
 
 ```js
-// defined in 'new' method or 'constructor' function
+// defined in 'constructor' method or 'new' function
 {
   constructor: function () {
     var private1;
@@ -297,7 +297,7 @@ var YourClass = BaseClass.extend({
 
 ```js
 var YourClass = BaseClass.extend({
-  new: function YourClass() {
+  constructor: function YourClass() {
     var private1 = 123; // access via getter/setter
     var private2 = 'abc'; // access via getter, no setter
     this.private({
@@ -323,9 +323,9 @@ var s1 = new SimpleClass();
 
 // Animal
 var Animal = BaseClass.extend({
-  new: function Animal(name) {
+  constructor: function Animal(name) {
     if (!(this instanceof Animal))
-      return Animal.new.apply(Animal, arguments);
+      return Animal.create.apply(Animal, arguments);
     BaseClass.apply(this); // or Animal.super_.apply(this);
     this.name = name;
   },
@@ -352,19 +352,19 @@ var b1 = Bear('Pooh'); // new less
 b1.introduce(); // -> My name is Pooh
 
 var Cat = Animal.extend({
-  new: function Cat() {
+  constructor: function Cat() {
     if (!(this instanceof Cat))
-      return Cat.new.apply(Cat, arguments);
+      return Cat.create.apply(Cat, arguments);
     Cat.super_.apply(this, arguments);
   }
 });
-var c1 = Cat.new('Kitty');
+var c1 = Cat.create('Kitty');
 c1.introduce(); // -> My name is Kitty
 
 var Dog = Animal.extend({
-  new: function Dog() {
+  constructor: function Dog() {
     if (!(this instanceof Dog))
-      return Dog.new.apply(Dog, arguments);
+      return Dog.create.apply(Dog, arguments);
     Dog.super_.apply(this, arguments);
   },
 }, {
@@ -376,7 +376,7 @@ var Dog = Animal.extend({
     console.log('Dog class method');
   }
 }); // -> Dog init
-var d1 = Dog.new('Hachi'); // Class method new call
+var d1 = Dog.create('Hachi'); // Class method create call
 d1.introduce(); // -> My name is Hachi
 Dog.dogClassMethod(); // -> Animal class method, Dog class method
 Dog.animalClassMethod(); // -> Animal class method
@@ -392,7 +392,7 @@ var BaseClass = require('base-class-extend');
 // http://lab.sonicmoov.com/development/javascript-object-defineproperty/
 
 var Vector2D = BaseClass.extend({
-  new: function Vector2D(x, y) {
+  constructor: function Vector2D(x, y) {
     this._length = 0;
     this._changed = true;
     this._x = x;
@@ -420,7 +420,7 @@ v2.set(1, 1);
 console.log('V2D(1, 1):', v2.length);
 
 var Vector3D = Vector2D.extend({
-  new: function Vector3D(x, y, z) {
+  constructor: function Vector3D(x, y, z) {
     Vector2D.call(this, x, y);
     this._z = z;
   },

@@ -57,7 +57,7 @@ var YourSubClass = YourClass.extend([name], [proto], [staticProps]);
   + **BaseClass**: 継承のための基底クラスまたはスーパークラス
   + **name**: 新しいクラス名の文字列 (省略可)
   + **proto**: 新しいクラスのプロトタイプオブジェクト (省略可)
-    + **new** または **constructor**: コンストラクタ関数 (省略可)
+    + **constructor** または **new**: コンストラクタ関数 (省略可)
     + **get** prop(): getter関数 (省略可)
     + **set** prop(value): setter関数 (省略可)
     + **any methods**: メソッドまたはメンバー関数 (省略可)
@@ -82,7 +82,7 @@ var YourSubClass = YourClass.extend([name], [proto], [staticProps]);
 var BaseClass = require('base-class-extend');
 
 var MyClass = BaseClass.extend({
-  new: function MyClass(value) {
+  constructor: function MyClass(value) {
     this.value = value; // setter経由
   },
   show: function show() {
@@ -103,7 +103,7 @@ myObj.show();
 myObj.value++; // 6 -> 7 throws Error
 ```
 
-## メソッド: Class.new(...) または Class.create(...)
+## メソッド: Class.constructor(...) または Class.new(...)
 
   クラスのインスタンスオブジェクトを作成する。
 
@@ -111,10 +111,10 @@ myObj.value++; // 6 -> 7 throws Error
 
 ```js
 var YourClass = BaseClass.extend('YourClass');
-var yourObj = YourClass.new();
+var yourObj = YourClass.constructor();
 
 // または
-var yourObj = YourClass.create();
+var yourObj = YourClass.new();
 
 // または
 var yourObj = new YourClass();
@@ -138,7 +138,7 @@ var yourObj = YourClass();
 
 ```js
 var BaseClass = require('base-class-extend').extendPrototype(Object);
-//  or
+//  または
 // Object.extend = BaseClass.extend;
 
 var SimpleClass = Object.extend('SimpleClass');
@@ -151,7 +151,7 @@ var SimpleClass = BaseClass.extend.call(Object, 'SimpleClass');
 
 ```js
 var BaseClass = require('base-class-extend').extendPrototype(Array);
-//  or
+//  または
 // Array.extend = BaseClass.extend;
 
 var CustomArray = Array.extend('CustomArray');
@@ -167,7 +167,7 @@ var ca = new CustomArray(1, 2, 3);
 
 ```js
 var BaseClass = require('base-class-extend').extendPrototype(Error);
-//  or
+//  または
 // Error.extend = BaseClass.extend;
 
 var CustomError = Error.extend('CustomError');
@@ -184,7 +184,7 @@ var ce = new CustomError('message');
 var EventEmitter = require('events').EventEmitter;
 
 var BaseClass = require('base-class-extend').extendPrototype(EventEmitter);
-//  or
+//  または
 // EventEmitter.extend = BaseClass.extend;
 
 var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
@@ -197,7 +197,7 @@ var CustomEventEmitter = BaseClass.extend.call(EventEmitter, 'CustomEventEmitter
 
 ```js
 var BaseClass = require('base-class-extend').extendPrototype();
-//  or
+//  または
 // Function.prototype.extend = BaseClass.extend;
 
 var SimpleClass = Object.extend('SimpleClass');
@@ -216,7 +216,7 @@ var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 ### 形式
 
 ```js
-// 'new'メソッドまたは'constructor'関数の中に定義すること
+// 'constructor'メソッドまたは'new'関数の中に定義すること
 {
   constructor: function () {
     var private1;
@@ -247,7 +247,7 @@ var CustomEventEmitter = EventEmitter.extend('CustomEventEmitter');
 
 ```js
 var YourClass = BaseClass.extend({
-  new: function YourClass() {
+  constructor: function YourClass() {
     var private1 = 123; // getter/setter経由のアクセス
     var private2 = 'abc'; // getter経由のアクセス, setter無し
     this.addPrototype({
@@ -267,7 +267,7 @@ var YourClass = BaseClass.extend({
 ### 形式
 
 ```js
-// 'new'メソッドまたは'constructor'関数の中に定義すること
+// 'constructor'メソッドまたは'new'関数の中に定義すること
 {
   constructor: function () {
     var private1;
@@ -298,7 +298,7 @@ var YourClass = BaseClass.extend({
 
 ```js
 var YourClass = BaseClass.extend({
-  new: function YourClass() {
+  constructor: function YourClass() {
     var private1 = 123; // getter/setter経由のアクセス
     var private2 = 'abc'; // getter経由のアクセス, setter無し
     this.private({
@@ -324,10 +324,10 @@ var s1 = new SimpleClass();
 
 // Animal
 var Animal = BaseClass.extend({
-  new: function Animal(name) {
+  constructor: function Animal(name) {
     if (!(this instanceof Animal))
-      return Animal.new.apply(Animal, arguments);
-    BaseClass.apply(this); // or Animal.super_.apply(this);
+      return Animal.create.apply(Animal, arguments);
+    BaseClass.apply(this); // または Animal.super_.apply(this);
     this.name = name;
   },
   get name() { return this._name; }, // getter
@@ -353,19 +353,19 @@ var b1 = Bear('Pooh'); // new less
 b1.introduce(); // -> My name is Pooh
 
 var Cat = Animal.extend({
-  new: function Cat() {
+  constructor: function Cat() {
     if (!(this instanceof Cat))
-      return Cat.new.apply(Cat, arguments);
+      return Cat.create.apply(Cat, arguments);
     Cat.super_.apply(this, arguments);
   }
 });
-var c1 = Cat.new('Kitty');
+var c1 = Cat.create('Kitty');
 c1.introduce(); // -> My name is Kitty
 
 var Dog = Animal.extend({
-  new: function Dog() {
+  constructor: function Dog() {
     if (!(this instanceof Dog))
-      return Dog.new.apply(Dog, arguments);
+      return Dog.create.apply(Dog, arguments);
     Dog.super_.apply(this, arguments);
   },
 }, {
@@ -377,7 +377,7 @@ var Dog = Animal.extend({
     console.log('Dog class method');
   }
 }); // -> Dog init
-var d1 = Dog.new('Hachi'); // Class method new call
+var d1 = Dog.create('Hachi'); // Class method create call
 d1.introduce(); // -> My name is Hachi
 Dog.dogClassMethod(); // -> Animal class method, Dog class method
 Dog.animalClassMethod(); // -> Animal class method
@@ -393,7 +393,7 @@ var BaseClass = require('base-class-extend');
 // http://lab.sonicmoov.com/development/javascript-object-defineproperty/
 
 var Vector2D = BaseClass.extend({
-  new: function Vector2D(x, y) {
+  constructor: function Vector2D(x, y) {
     this._length = 0;
     this._changed = true;
     this._x = x;
@@ -421,7 +421,7 @@ v2.set(1, 1);
 console.log('V2D(1, 1):', v2.length);
 
 var Vector3D = Vector2D.extend({
-  new: function Vector3D(x, y, z) {
+  constructor: function Vector3D(x, y, z) {
     Vector2D.call(this, x, y);
     this._z = z;
   },
