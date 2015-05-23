@@ -34,18 +34,32 @@
       document.write(msg + '<br/>');
   }
 
+  function SimpleClass() {}
+  try { SimpleClass.name = 'SimpleClass'; } catch (err) {}
+  function SimpleSubClass() {}
+  try { SimpleSubClass.name = 'SimpleSubClass'; } catch (err) {}
+  SimpleSubClass.prototype = new SimpleClass();
+  SimpleSubClass.prototype.constructor = SimpleSubClass;
+  SimpleSubClass.super_ = SimpleClass;
+
+  pr(constructors(SimpleClass).map(nm).join(' < '), ': SimpleClass');
+  pr(constructors(new SimpleClass).map(nm).join(' < '), ': new SimpleClass');
+  pr(constructors(SimpleSubClass).map(nm).join(' < '), ': SimpleSubClass');
+  pr(constructors(new SimpleSubClass).map(nm).join(' < '), ': new SimpleSubClass');
+
   var Klass = Base.extend('Klass');
   var k1 = new Klass();
   var k2 = Klass.create();
-  var k2 = Klass['new']();
-  var k3 = Klass();
-  var k4 = Klass.create();
+  var k3 = Klass['new']();
+  var k4 = Klass();
+  var k5 = Klass.create();
 
   pr(constructors(Klass).map(nm).join(' < '), ': Klass');
   pr(constructors(k1   ).map(nm).join(' < '), ': k1');
   pr(constructors(k2   ).map(nm).join(' < '), ': k2');
   pr(constructors(k3   ).map(nm).join(' < '), ': k3');
   pr(constructors(k4   ).map(nm).join(' < '), ': k4');
+  pr(constructors(k5   ).map(nm).join(' < '), ': k5');
 
   pr();
   pr('end of test');
