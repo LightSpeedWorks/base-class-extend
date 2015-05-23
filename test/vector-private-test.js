@@ -2,7 +2,6 @@
   'use strict';
 
   var constructors = require('get-constructors');
-  constructors.extendPrototype();
 
   try {
     var BaseClass = require('../lib/base-class-extend');
@@ -75,7 +74,7 @@
 
   console.log();
   function nm(elem) { return elem.name; }
-  console.log(Vector2D.constructors.map(nm).join(' < '), ': Vector2D');
-  console.log(v2      .constructors.map(nm).join(' < '), ': v2');
-  console.log(Vector3D.constructors.map(nm).join(' < '), ': Vector3D');
-  console.log(v3      .constructors.map(nm).join(' < '), ': v3');
+  console.log(constructors(Vector2D).map(nm).join(' < '), ': Vector2D');
+  console.log(constructors(v2      ).map(nm).join(' < '), ': v2');
+  console.log(constructors(Vector3D).map(nm).join(' < '), ': Vector3D');
+  console.log(constructors(v3      ).map(nm).join(' < '), ': v3');

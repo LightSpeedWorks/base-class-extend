@@ -2,7 +2,6 @@
   'use strict';
 
   var constructors = require('get-constructors');
-  constructors.extendPrototype();
 
   try {
     var BaseClass = require('../lib/base-class-extend');
@@ -59,8 +58,8 @@
 
   console.log();
   function nm(elem) { return elem.name; }
-  console.log(PrivateClass1.constructors.map(nm).join(' < '), ': PrivateClass1');
-  console.log(p1           .constructors.map(nm).join(' < '), ': p1');
-  console.log(p2           .constructors.map(nm).join(' < '), ': p2');
-  console.log(p3           .constructors.map(nm).join(' < '), ': p3');
-  console.log(p4           .constructors.map(nm).join(' < '), ': p4');
+  console.log(constructors(PrivateClass1).map(nm).join(' < '), ': PrivateClass1');
+  console.log(constructors(p1           ).map(nm).join(' < '), ': p1');
+  console.log(constructors(p2           ).map(nm).join(' < '), ': p2');
+  console.log(constructors(p3           ).map(nm).join(' < '), ': p3');
+  console.log(constructors(p4           ).map(nm).join(' < '), ': p4');

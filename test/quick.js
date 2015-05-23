@@ -2,7 +2,6 @@
   'use strict';
 
   var constructors = require('get-constructors');
-  constructors.extendPrototype();
 
   try {
     var BaseClass = require('../lib/base-class-extend');
@@ -36,5 +35,5 @@
 
   console.log();
   function nm(elem) { return elem.name; }
-  console.log(MyClass.constructors.map(nm).join(' < '), ': MyClass');
-  console.log(myObj.constructors.map(nm).join(' < '), ': myObj');
+  console.log(constructors(MyClass).map(nm).join(' < '), ': MyClass');
+  console.log(constructors(myObj  ).map(nm).join(' < '), ': myObj');

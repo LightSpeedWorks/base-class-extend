@@ -2,7 +2,6 @@
   'use strict';
 
   var constructors = require('get-constructors');
-  constructors.extendPrototype();
 
   try {
     var BaseClass = require('../lib/base-class-extend');
@@ -81,16 +80,16 @@
 
   console.log();
   function nm(elem) { return elem.name; }
-  console.log(Animal.constructors.map(nm).join(' < '), ': Animal');
-  console.log(a1    .constructors.map(nm).join(' < '), ': a1');
-  console.log(Bear  .constructors.map(nm).join(' < '), ': Bear');
-  console.log(b1    .constructors.map(nm).join(' < '), ': b1');
-  console.log(Cat   .constructors.map(nm).join(' < '), ': Cat');
-  console.log(c1    .constructors.map(nm).join(' < '), ': c1');
-  console.log(Dog   .constructors.map(nm).join(' < '), ': Dog');
-  console.log(d1    .constructors.map(nm).join(' < '), ': d1');
+  console.log(constructors(Animal).map(nm).join(' < '), ': Animal');
+  console.log(constructors(a1    ).map(nm).join(' < '), ': a1');
+  console.log(constructors(Bear  ).map(nm).join(' < '), ': Bear');
+  console.log(constructors(b1    ).map(nm).join(' < '), ': b1');
+  console.log(constructors(Cat   ).map(nm).join(' < '), ': Cat');
+  console.log(constructors(c1    ).map(nm).join(' < '), ': c1');
+  console.log(constructors(Dog   ).map(nm).join(' < '), ': Dog');
+  console.log(constructors(d1    ).map(nm).join(' < '), ': d1');
 
   var Klass = BaseClass.extend.call(Object, 'Klass');
   var k1 = new Klass();
-  console.log(Klass .constructors.map(nm).join(' < '), ': Klass');
-  console.log(k1    .constructors.map(nm).join(' < '), ': k1');
+  console.log(constructors(Klass ).map(nm).join(' < '), ': Klass');
+  console.log(constructors(k1    ).map(nm).join(' < '), ': k1');
