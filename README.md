@@ -11,8 +11,9 @@ Easy to use, easy to inherit/extend.<br/>
 Also supports inheritance from `Array`, `Error`, or Node.js `events.EventEmitter`.
 
 no difficult keywords,<br/>
-no `constructor`, no `prototype`, no `__proto__`,<br/>
-no `Object.defineProperty`, no `Object.setPrototypeOf`, etc ...
+no `prototype`, no `__proto__`,<br/>
+no `Object.defineProperty`, no `Object.setPrototypeOf`, etc ...<br/>
+needs `constructor` only,
 
 Supports Google Chrome, Mozilla Firefox, Microsoft ie11/10/9/8/7/6 and Node.js/io.js.
 

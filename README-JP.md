@@ -12,8 +12,9 @@ getter/setterをサポートします。
 `Array`, `Error`, やNode.jsの`events.EventEmitter`からの継承をサポートします。
 
 難しいキーワードは全く必要ありません。<br/>
-`constructor`も、`prototype`も、`__proto__`も、<br/>
-`Object.defineProperty`も、`Object.setPrototypeOf`も、等も不要です。
+`prototype`も、`__proto__`も、<br/>
+`Object.defineProperty`も、`Object.setPrototypeOf`も、等も不要です。<br/>
+`constructor`だけ必要です。
 
 Google Chrome, Mozilla Firefox, Microsoft ie11/10/9/8/7/6 と Node.js/io.js をサポートします。
 
