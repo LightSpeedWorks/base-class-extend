@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, Chrome=1">
+<meta http-equiv="Content-Language" content="ja">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+<script src="extend2.js"></script>
+<script>
+(function (extend) {
+  'use strict';
+
+  // pr(msgs...)
+  function pr() {
+    var msg = [].slice.call(arguments).join(' ');
+    if (typeof console !== 'undefined')
+      console.log(msg);
+    if (typeof document !== 'undefined')
+      document.writeln(msg + '<br/>');
+  }
+
+  window.onload = function () {
+
+  }
+
+})(this.extend);
+</script>
+
+</body>
+</html>
