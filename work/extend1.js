@@ -14,8 +14,8 @@ this.extend = function () {
   var defProp = function (obj) {
     if (!Object.defineProperty) return null;
     try {
-      Object.defineProperty(obj, 'prop', {value: 'value'});
-      return obj.prop === 'value' ? Object.defineProperty : null;
+      Object.defineProperty(obj, 'prop', {value: 'test'});
+      return obj.prop === 'test' ? Object.defineProperty : null;
     } catch (err) { return null; }
   } ({});
 
