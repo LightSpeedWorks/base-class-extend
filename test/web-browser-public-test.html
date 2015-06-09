@@ -42,10 +42,10 @@
   pr();
   pr('Base.extend defines Animal class.');
   var Animal = Base.extend('Animal', {
-    constructor: function Animal(name) {
+    constructor: function (name) {
       this.name = name;
     },
-    introduce: function introduce() {
+    introduce: function () {
       pr('My name is ' + this.name + '. ' +
          'I am ' + a(this.constructor.name) + '.');
       pr('私の名前は' + this.name + 'です。' +
