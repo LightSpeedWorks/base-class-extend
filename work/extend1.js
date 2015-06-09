@@ -137,7 +137,9 @@ this.extend = function () {
     statics = copy({}, {}, statics, proto.statics);
     var _super = typeof this === 'function' ? this : Object;
 
-    var ctor = namedFunc(name, proto.hasOwnProperty('constructor') && proto.constructor ||
+    var ctor = namedFunc(name,
+      proto.hasOwnProperty('constructor') && proto.constructor ||
+      proto.hasOwnProperty('new')         && proto['new'] ||
     function ctor() {
       if (!(this instanceof proto.constructor))
         return create.apply(proto.constructor, arguments);
