@@ -11,14 +11,17 @@
 <script>
 this.$debug = true;
 </script>
+<script src="print.js"></script>
 <!--script src="http://lightspeedworks.github.io/get-constructors/get-constructors.js"></script-->
 <script src="../node_modules/get-constructors/get-constructors.js"></script>
 <!--script src="http://lightspeedworks.github.io/base-class-extend/lib/base-class-extend.js"></script-->
 <script src="../lib/base-class-extend.js"></script>
 
 <script>
-(function (constructors, Base) {
+(function (constructors, Base, $print) {
   'use strict';
+
+  var pr = typeof $debug !== 'undefined' && $debug ? $print : function () {};
 
   // Array.prototype.map for ie8
   if (!Array.prototype.hasOwnProperty('map'))
@@ -28,16 +31,6 @@ this.$debug = true;
         res[i] = fn.call(ctx, this[i], i, this);
       return res;
     };
-
-  function pr() {
-    var msg = 'web-browser-test: ' + [].slice.call(arguments).join(' ');
-    setTimeout(function () {
-      if (typeof console !== 'undefined')
-        console.log(msg);
-      if (typeof document !== 'undefined')
-        document.writeln(msg + '<br/>\n');
-    }, 1000);
-  }
 
   function SimpleClass() {}
   try { SimpleClass.name = 'SimpleClass'; } catch (err) {}
@@ -76,7 +69,7 @@ this.$debug = true;
     return name;
   }
 
-})(constructors, BaseClass);
+})(constructors, BaseClass, $print);
 </script>
 
 </body>

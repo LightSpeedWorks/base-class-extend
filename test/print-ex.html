@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, Chrome=1">
+<meta http-equiv="Content-Language" content="ja">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+<script src="print.js"></script>
+<script>
+$print('$print defined');
+
+// onload()
+this.onload = function (onload) {
+  'use strict';
+
+  return function () {
+    $print('onload 1-1:', typeof onload, onload === null ? 'null' : '');
+    if (onload) onload();
+    $print('onload 1-2');
+  };
+}(this.onload);
+
+$print('onload defined');
+</script>
+
+</body>
+</html>
