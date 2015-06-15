@@ -37,4 +37,7 @@ this.$print = function (g, w, d, c) {
     module.exports = print;
 
   return print;
-}(this, this.window, this.document, typeof console !== 'undefined' ? console : null);
+}(Function('return this')(),
+  typeof window   !== 'undefined' ? window   : undefined,
+  typeof document !== 'undefined' ? document : undefined,
+  typeof console  !== 'undefined' ? console  : undefined);
