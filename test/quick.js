@@ -1,6 +1,11 @@
 // quick.js
   'use strict';
 
+  try {
+    global.$debug = true;
+    global.$print = require('./print');
+  } catch (e) {}
+
   var constructors = require('get-constructors');
 
   try {

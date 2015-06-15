@@ -2,6 +2,11 @@
   'use strict';
 
   try {
+    global.$debug = true;
+    global.$print = require('./print');
+  } catch (e) {}
+
+  try {
     var BaseClass = require('../lib/base-class-extend');
   } catch (e) {
     console.log('cant require "../lib/base-class-extend": ' + e);
