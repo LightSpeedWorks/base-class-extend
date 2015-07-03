@@ -1,0 +1,6 @@
+.git*
+.npm*
+test/
+work/
+tools/
+index.html
