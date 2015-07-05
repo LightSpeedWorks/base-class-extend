@@ -23,6 +23,9 @@ Supports Google Chrome, Mozilla Firefox, Microsoft ie11/10/9/8/7/6 and Node.js/i
 
 # INSTALL:
 
+[![NPM](https://nodei.co/npm/base-class-extend.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/base-class-extend/)
+[![NPM](https://nodei.co/npm-dl/base-class-extend.png?height=2)](https://nodei.co/npm/base-class-extend/)
+
 ```bash
 $ npm install base-class-extend
 ```
